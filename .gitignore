@@ -1,0 +1,4 @@
+ssh/config.local
+gem/credentials
+npmrc
+*.dropshareconnection

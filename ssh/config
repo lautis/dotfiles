@@ -1,0 +1,22 @@
+Include ~/.ssh/config.local
+
+# Persisting SSH connections to GitHub
+Host github.com
+  ControlMaster auto
+  ControlPersist 120
+
+Host *
+  Protocol 2
+  Compression yes
+
+  # Default to connection multiplexing
+  ControlMaster auto
+  ControlPath ~/.ssh/control-%r@%h:%p
+  ControlPersist 10m
+
+  # Load ssh-agent automatically
+  AddKeysToAgent yes
+
+  # Store passphrases in MacOS keychain
+  IgnoreUnknown UseKeychain
+  UseKeychain yes

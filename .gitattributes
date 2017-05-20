@@ -1,0 +1,2 @@
+gitconfig filter=gitconfig
+files/atom.cson filter=atom-config

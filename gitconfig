@@ -1,0 +1,53 @@
+[user]
+	name = REDACTED_NAME
+	email = REDACTED_EMAIL
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = true
+[core]
+	excludesfile = ~/.gitignore
+	whitespace = trailing-space,space-before-tab
+	autocrlf = input
+	safecrlf = true
+[push]
+	default = upstream
+[merge]
+	log = true
+[branch "master"]
+[branch]
+	autosetupmerge = true
+	autosetuprebase = remote
+[alias]
+	; List branched in descending order by last modified date
+	b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+	c = commit --verbose
+	co = checkout
+	l = log --oneline --decorate
+	lg = log --graph --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	ls-ignored = ls-files --exclude-standard --ignored --others
+	smu = submodule update --init --recursive
+	pp = pull --rebase -p
+	wd = diff --color-words
+	wds = diff --color-words --staged
+	; Publish the current branch
+	pub = "!f() { git push -u ${1:-origin} `git symbolic-ref HEAD`; }; f"
+[diff]
+	mnemonicprefix = true
+	indentHeuristic = true
+	compactionHeuristic = true
+[apply]
+	whitespace = fix
+[i18n]
+	commitencoding = UTF-8
+	logoutputencoding = UTF-8
+[hub]
+	protocol = ssh
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[url "git@github.com:"]
+	insteadOf = "https://github.com/"
