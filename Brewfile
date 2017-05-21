@@ -26,6 +26,7 @@ mas '1Blocker', id: 1107421413
 brew 'autojump'
 brew 'docker-clean'
 brew 'elixir'
+brew 'fasd'
 brew 'gifsicle'
 brew 'git'
 brew 'heroku'

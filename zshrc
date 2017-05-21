@@ -63,11 +63,12 @@ RPS1='$RPROMPT_PREFIX$(rprompt)$RPROMPT_SUFFIX'
 # export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(gem git autojump bundler colored-man-pages docker docker-compose rake extract github rails yarn hub)
+plugins=(gem git fasd bundler colored-man-pages docker docker-compose rake extract github rails yarn hub)
 
 cdpath=(.. ~ ~/Documents)
 
 # Aliases
+alias j=z
 alias irssi="mosh irssi -- screen -rdU irssi"
 alias vmp="git reset --hard; git clean -f"
 alias c="pygmentize -O style=monokai -f console256 -g"
