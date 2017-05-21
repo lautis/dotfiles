@@ -29,7 +29,7 @@ function preexec() {
 
 function precmd() {
   if [ $timer ]; then
-    export timer_show=$(($SECONDS - $timer))
+    timer_show=$(($SECONDS - $timer))
     unset timer
   fi
 }
