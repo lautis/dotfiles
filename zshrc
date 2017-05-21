@@ -122,9 +122,21 @@ bindkey "^I" expand-or-complete-with-redisplay
 
 source $ZSH/oh-my-zsh.sh
 
-if command -v rbenv > /dev/null; then eval "$(rbenv init - --no-rehash)"; fi
-if command -v nodenv > /dev/null; then eval "$(nodenv init - --no-rehash)"; fi
-if command -v jenv > /dev/null; then eval "$(jenv init - --no-rehash)"; fi
+# Cache initialisation scripts for *env
+function _load-toolchain-env() {
+  if command -v $1 > /dev/null; then
+    toolchain_cache="$ZSH_CACHE_DIR/$1-init-cache"
+    if [ "$(command -v $1)" -nt "$toolchain_cache" -o ! -s "$toolchain_cache" ]; then
+      $1 init - --no-rehash >| "$toolchain_cache"
+    fi
+    source "$toolchain_cache"
+    unset toolchain_cache
+  fi
+}
+
+_load-toolchain-env rbenv
+_load-toolchain-env nodenv
+_load-toolchain-env jenv
 
 [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
