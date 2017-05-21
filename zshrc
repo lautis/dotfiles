@@ -1,20 +1,11 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 
-export SPACESHIP_DOCKER_SHOW="false"
-export SPACESHIP_PROMPT_SYMBOL="❯"
-export SPACESHIP_PROMPT_SEPARATE_LINE="true"
-export SPACESHIP_TIME_SHOW="false"
-export SPACESHIP_NODE_SHOW="false"
-export SPACESHIP_GOLANG_SHOW="false"
-export SPACESHIP_JULIA_SHOW="false"
-export SPACESHIP_PHP_SHOW_LOCAL="false"
-export SPACESHIP_RUBY_SHOW="false"
-export SPACESHIP_RUST_SHOW="false"
-export SPACESHIP_SWIFT_SHOW_LOCAL="false"
-export SPACESHIP_XCODE_SHOW_LOCAL="false"
-export SPACESHIP_PYENV_SHOW_LOCAL="false"
-export SPACESHIP_VI_MODE_SHOW="false"
+SPACESHIP_DOCKER_SHOW="false"
+SPACESHIP_PROMPT_SYMBOL="❯"
+SPACESHIP_PROMPT_SEPARATE_LINE="true"
+
+SPACESHIP_PROMPT_ORDER=(time user host dir git line_sep char)
 
 # Set to the name theme to load.
 # Look in ~/.oh-my-zsh/themes/
