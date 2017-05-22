@@ -74,8 +74,7 @@ end
 
 desc 'Install homebrew'
 task :homebrew do
-  #next if `command -v brew`
-  `/usr/bin/ruby -e "$(curl -fsSL #{HOMEBREW_URL})"`
+  `/usr/bin/ruby -e "$(curl -fsSL #{HOMEBREW_URL})"` unless `command -v brew`
   `brew install mas`
 end
 
