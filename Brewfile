@@ -57,7 +57,6 @@ brew 'terminal-notifier'
 brew 'the_silver_searcher'
 brew 'universal-ctags', args: ['HEAD']
 brew 'zsh-autosuggestions'
-brew 'zsh-syntax-highlighting'
 
 cask 'atom'
 cask 'charles'

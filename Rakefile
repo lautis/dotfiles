@@ -25,7 +25,7 @@ task :symlink do
 end
 
 desc 'Configure ZSH'
-task zsh: ['zsh:oh_my_zsh', 'zsh:spaceship', 'zsh:set_default']
+task zsh: ['zsh:oh_my_zsh', 'zsh:spaceship', 'zsh:set_default', 'zsh:fast_syntax_highlighting']
 
 namespace :zsh do
   desc 'Install ZSH Spaceship theme'
@@ -41,6 +41,15 @@ namespace :zsh do
       puts 'Oh-My-ZSH already installed'
     else
       `git clone git@github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh`
+    end
+  end
+
+  task :fast_syntax_highlighting do
+    plugin_path = File.join(ENV['HOME'], '.oh-my-zsh', 'custom', 'plugins', 'fast-syntax-highlighting')
+    if File.directory?(plugin_path)
+      `git -C #{plugin_path} pull`
+    else
+      `git clone git@github.com/zdharma/fast-syntax-highlighting.git #{plugin_path}`
     end
   end
 

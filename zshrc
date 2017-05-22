@@ -54,7 +54,10 @@ RPS1='$RPROMPT_PREFIX$(rprompt)$RPROMPT_SUFFIX'
 # export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(gem git fasd bundler colored-man-pages docker docker-compose rake extract github rails yarn hub)
+plugins=(
+  gem git fasd bundler colored-man-pages docker docker-compose rake extract
+  rails yarn fast-syntax-highlighting
+)
 
 cdpath=(.. ~ ~/Documents)
 
@@ -130,4 +133,3 @@ _load-toolchain-env nodenv
 _load-toolchain-env jenv
 
 [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
