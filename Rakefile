@@ -40,7 +40,7 @@ namespace :zsh do
     if File.directory?(File.join(ENV['HOME'], '.oh-my-zsh'))
       puts 'Oh-My-ZSH already installed'
     else
-      `git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh`
+      `git clone git@github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh`
     end
   end
 
