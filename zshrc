@@ -116,6 +116,10 @@ bindkey "^I" expand-or-complete-with-redisplay
 
 source $ZSH/oh-my-zsh.sh
 
+if [ -f /usr/local/share/zsh/site-functions/_tmuxinator ]; then
+  source /usr/local/share/zsh/site-functions/_tmuxinator
+fi
+
 # Cache initialisation scripts for *env
 function _load-toolchain-env() {
   if command -v $1 > /dev/null; then

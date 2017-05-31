@@ -52,9 +52,10 @@ brew 'rbenv-vars'
 brew 'redis'
 brew 'ruby-build'
 brew 'sshuttle'
-brew 'tmux'
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
+brew 'tmux'
+brew 'tmuxinator-autocompletion'
 brew 'universal-ctags', args: ['HEAD']
 brew 'zsh-autosuggestions'
 
