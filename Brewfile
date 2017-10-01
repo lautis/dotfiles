@@ -22,6 +22,7 @@ mas 'Amphetamine', id: 937984704
 mas 'Parcel', id: 639968404
 mas 'AreenaX', id: 1018799028
 mas '1Blocker', id: 1107421413
+mas 'Giphy Capture', id: 668208984
 
 brew 'autojump'
 brew 'docker-clean'
@@ -55,7 +56,7 @@ brew 'sshuttle'
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
 brew 'tmux'
-brew 'tmuxinator-autocompletion'
+brew 'tmuxinator-completion'
 brew 'universal-ctags', args: ['HEAD']
 brew 'zsh-autosuggestions'
 
@@ -71,6 +72,7 @@ cask 'font-dejavu-sans'
 cask 'font-fira-code'
 cask 'font-hasklig'
 cask 'font-menlo-for-powerline'
+cask 'font-microsoft-office'
 cask 'font-office-code-pro'
 cask 'font-roboto'
 cask 'font-source-code-pro'
@@ -82,6 +84,7 @@ cask 'google-chrome'
 cask 'gpgtools'
 cask 'hex-fiend'
 cask 'hyperdock'
+cask 'insomnia'
 cask 'qlcolorcode'
 cask 'qlmarkdown'
 cask 'qlprettypatch'
