@@ -4,7 +4,7 @@ INSTALL_RUBY_VERSION = '2.4.1'.freeze
 HOMEBREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'.freeze
 SPACESHIP_URL = 'https://raw.githubusercontent.com/denysdovhan/spaceship-zsh-theme/master/spaceship.zsh'.freeze
 FAST_AUTOCOMPLETE_REPO = 'git@github.com:zdharma/fast-syntax-highlighting.git'.freeze
-OH_MY_ZSH_REPO = 'git@github.com/robbyrussell/oh-my-zsh.git'.freeze
+OH_MY_ZSH_REPO = 'git@github.com:robbyrussell/oh-my-zsh.git'.freeze
 
 def osascript(script)
   system 'osascript', *script.split(/\n/).map { |line| ['-e', line] }.flatten
@@ -39,10 +39,14 @@ namespace :zsh do
 
   desc 'Install Oh My ZSH'
   task :oh_my_zsh do
-    if File.directory?(File.join(ENV['HOME'], '.oh-my-zsh'))
+    if File.directory?(File.join(ENV['HOME'], '.oh-my-zsh', '.git'))
       puts 'Oh-My-ZSH already installed'
     else
-      `git clone #{OH_MY_ZSH_REPO} ~/.oh-my-zsh`
+      `git clone --bare #{OH_MY_ZSH_REPO} ~/.oh-my-zsh/.git`
+      Dir.chdir(File.join(ENV['HOME'], '.oh-my-zsh')) do
+        `git config core.bare false`
+        `git checkout master`
+      end
     end
   end
 
@@ -79,7 +83,7 @@ namespace :ruby do
   task :configure_bundler do
     # Bundler is instelled via rbenv default gems plugin
     number_of_cores = `sysctl -n hw.ncpu`
-    `bundle config --global jobs #{number_of_cores.chomp.to_i - 1}`
+    `eval "$(rbenv init -)"; gem install bundler;bundle config --global jobs #{number_of_cores.chomp.to_i - 1}`
   end
 end
 
@@ -175,7 +179,7 @@ end
 
 desc 'Install pygments'
 task :pygments do
-  `pip install pygments`
+  `sudo easy_install Pygments`
 end
 
 desc 'Configure Terminal.app'
