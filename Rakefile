@@ -1,6 +1,6 @@
 require 'rake'
 
-INSTALL_RUBY_VERSION = '2.4.1'.freeze
+INSTALL_RUBY_VERSION = '2.4.2'.freeze
 HOMEBREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'.freeze
 SPACESHIP_URL = 'https://raw.githubusercontent.com/denysdovhan/spaceship-zsh-theme/master/spaceship.zsh'.freeze
 FAST_AUTOCOMPLETE_REPO = 'git@github.com:zdharma/fast-syntax-highlighting.git'.freeze
