@@ -43,8 +43,6 @@
 [i18n]
 	commitencoding = UTF-8
 	logoutputencoding = UTF-8
-[hub]
-	protocol = ssh
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
