@@ -58,6 +58,7 @@ brew 'the_silver_searcher'
 brew 'tmux'
 brew 'tmuxinator-completion'
 brew 'universal-ctags', args: ['HEAD']
+brew 'zsh'
 brew 'zsh-autosuggestions'
 
 cask 'atom'

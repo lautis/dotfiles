@@ -61,7 +61,7 @@ namespace :zsh do
 
   desc 'Change default shell to ZSH'
   task :set_default do
-    `chsh -s /bin/zsh`
+    `chsh -s /usr/local/bin/zsh`
   end
 end
 
