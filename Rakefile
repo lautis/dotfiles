@@ -27,9 +27,25 @@ task :symlink do
 end
 
 desc 'Configure ZSH'
-task zsh: ['zsh:oh_my_zsh', 'zsh:spaceship', 'zsh:set_default', 'zsh:fast_syntax_highlighting']
+task zsh: [
+  'zsh:shell',
+  'zsh:oh_my_zsh',
+  'zsh:spaceship',
+  'zsh:set_default',
+  'zsh:fast_syntax_highlighting'
+]
 
 namespace :zsh do
+  desc 'Add Homebrew ZSH to list of acceptable shells'
+  task :shell do
+    path = '/usr/local/bin/zsh'
+    shells_file = '/etc/shells'
+    unless File.read(shells_file).include?(path)
+      puts 'Adding ZSH to lit of acceptable shells'
+      `echo #{path} | sudo tee -a #{shells_file}`
+    end
+  end
+
   desc 'Install ZSH Spaceship theme'
   task :spaceship do
     themes_dir = File.join(ENV['HOME'], '.oh-my-zsh', 'custom', 'themes')
