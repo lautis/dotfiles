@@ -58,11 +58,11 @@ brew 'ruby-build'
 brew 'sshuttle'
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
+brew 'tldr'
 brew 'tmux'
 brew 'tmuxinator-completion'
 brew 'zsh'
 brew 'zsh-autosuggestions'
-
 
 cask 'atom'
 cask 'charles'
