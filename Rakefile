@@ -3,15 +3,19 @@ require 'rake'
 INSTALL_RUBY_VERSION = '2.5.0'.freeze
 HOMEBREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'.freeze
 SPACESHIP_URL = 'https://raw.githubusercontent.com/denysdovhan/spaceship-zsh-theme/master/spaceship.zsh'.freeze
-FAST_AUTOCOMPLETE_REPO = 'git@github.com:zdharma/fast-syntax-highlighting.git'.freeze
-OH_MY_ZSH_REPO = 'git@github.com:robbyrussell/oh-my-zsh.git'.freeze
+FAST_AUTOCOMPLETE_REPO = 'git@github.com:zdharma/fast-syntax-highlighting.git'
+                         .freeze
+OH_MY_ZSH_REPO = 'git@github.com:robbyrussell/oh-my-zsh.git'
+                 .freeze
 
 def osascript(script)
   system 'osascript', *script.split(/\n/).map { |line| ['-e', line] }.flatten
 end
 
-task default: %i[symlink homebrew packages xcode zsh ruby java node rust atom
-                 pygments terminal macos]
+task default: %i[
+  symlink homebrew packages xcode zsh ruby java node rust atom pygments terminal
+  macos
+]
 
 desc 'Symlink configuration files to local directory'
 task :symlink do
@@ -67,7 +71,14 @@ namespace :zsh do
   end
 
   task :fast_syntax_highlighting do
-    plugin_path = File.join(ENV['HOME'], '.oh-my-zsh', 'custom', 'plugins', 'fast-syntax-highlighting')
+    plugin_path = File.join(
+      ENV['HOME'],
+      '.oh-my-zsh',
+      'custom',
+      'plugins',
+      'fast-syntax-highlighting'
+    )
+
     if File.directory?(plugin_path)
       `git -C #{plugin_path} pull`
     else
@@ -98,14 +109,20 @@ namespace :ruby do
 
   task :configure_bundler do
     # Bundler is instelled via rbenv default gems plugin
-    number_of_cores = `sysctl -n hw.ncpu`
-    `eval "$(rbenv init -)"; gem install bundler;bundle config --global jobs #{number_of_cores.chomp.to_i - 1}`
+    jobs = `sysctl -n hw.ncpu`.chomp.to_i - 1
+    `
+      eval "$(rbenv init -)";
+      gem install bundler;
+      bundle config --global jobs #{jobs}
+    `
   end
 end
 
 desc 'Install homebrew'
 task :homebrew do
-  `/usr/bin/ruby -e "$(curl -fsSL #{HOMEBREW_URL})" </dev/null` if `which brew`.empty?
+  if `which brew`.empty?
+    `/usr/bin/ruby -e "$(curl -fsSL #{HOMEBREW_URL})" </dev/null`
+  end
   `brew install mas`
 end
 
@@ -201,11 +218,11 @@ end
 desc 'Configure Terminal.app'
 task :terminal do
   `open files/Brewer.terminal`
-  osascript <<-END
+  osascript <<-OSASCRIPT
     tell application "Terminal"
       set default settings to settings set "Brewer"
     end tell
-  END
+  OSASCRIPT
 end
 
 desc 'MacOS settings'
