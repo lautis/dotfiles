@@ -8,13 +8,25 @@ FAST_AUTOCOMPLETE_REPO = 'git@github.com:zdharma/fast-syntax-highlighting.git'
 OH_MY_ZSH_REPO = 'git@github.com:robbyrussell/oh-my-zsh.git'
                  .freeze
 
+def number_of_cores
+  if RUBY_PLATFORM.include?('darwin')
+    `sysctl -n hw.ncpu`
+  else
+    `nproc --all`
+  end.chomp.to_i
+end
+
 def osascript(script)
   system 'osascript', *script.split(/\n/).map { |line| ['-e', line] }.flatten
 end
 
 task default: %i[
-  symlink homebrew packages xcode zsh ruby java node rust atom pygments terminal
-  macos
+  symlink homebrew packages xcode zsh ruby java node rust atom pygments
+  terminal macos
+]
+
+task linux: %i[
+  symlink zsh ruby node rust
 ]
 
 desc 'Symlink configuration files to local directory'
@@ -43,6 +55,7 @@ namespace :zsh do
   desc 'Add Homebrew ZSH to list of acceptable shells'
   task :shell do
     path = '/usr/local/bin/zsh'
+    next unless File.exist?(path)
     shells_file = '/etc/shells'
     unless File.read(shells_file).include?(path)
       puts 'Adding ZSH to lit of acceptable shells'
@@ -109,7 +122,7 @@ namespace :ruby do
 
   task :configure_bundler do
     # Bundler is instelled via rbenv default gems plugin
-    jobs = `sysctl -n hw.ncpu`.chomp.to_i - 1
+    jobs = [number_of_cores - 1, 1].max
     `
       eval "$(rbenv init -)";
       gem install bundler;
