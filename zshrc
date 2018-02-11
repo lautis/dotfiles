@@ -2,44 +2,63 @@
 export ZSH=$HOME/.oh-my-zsh
 
 SPACESHIP_DOCKER_SHOW="false"
-SPACESHIP_PROMPT_SYMBOL="❯"
+SPACESHIP_CHAR_SYMBOL="❯ "
 SPACESHIP_PROMPT_SEPARATE_LINE="true"
+SPACESHIP_DIR_TRUNC_REPO="false"
+
+SPACESHIP_EXIT_CODE_SHOW="true"
+SPACESHIP_EXIT_CODE_PREFIX=" "
+SPACESHIP_EXIT_CODE_SUFFIX=" ↵"
+SPACESHIP_EXIT_CODE_SYMBOL=""
+SPACESHIP_EXIT_CODE_COLOR="red"
+
+SPACESHIP_EXEC_TIME_SHOW=true
+SPACESHIP_EXEC_TIME_PREFIX="("
+SPACESHIP_EXEC_TIME_SUFFIX=")"
+SPACESHIP_EXEC_TIME_COLOR="yellow"
+SPACESHIP_EXEC_TIME_ELAPSED="1"
 
 SPACESHIP_PROMPT_ORDER=(time user host dir git line_sep char)
+SPACESHIP_RPROMPT_ORDER=(rprompt_prefix custom_exec_time custom_exit_code rprompt_suffix)
 
 # Set to the name theme to load.
 # Look in ~/.oh-my-zsh/themes/
 export ZSH_THEME="spaceship"
 
-function rprompt() {
-  RETVAL=$?
+spaceship_custom_exec_time() {
+  [[ $SPACESHIP_EXEC_TIME_SHOW == false ]] && return
 
-  if [[ $timer_show -gt 1 ]]; then
-    echo -n "%F{yellow}(${timer_show}s)%{$reset_color%}"
-  fi
-
-  if [[ $RETVAL -ne 0 ]]; then
-    echo -n "%{$fg[red]%}%  $RETVAL ↵%{$reset_color%}"
+  if [[ $SPACESHIP_EXEC_TIME_duration -ge $SPACESHIP_EXEC_TIME_ELAPSED ]]; then
+    spaceship::section \
+      "$SPACESHIP_EXEC_TIME_COLOR" \
+      "" \
+      "$SPACESHIP_EXEC_TIME_PREFIX$(spaceship::displaytime $SPACESHIP_EXEC_TIME_duration)$SPACESHIP_EXEC_TIME_SUFFIX" \
+      ""
   fi
 }
 
-function preexec() {
-  timer=${timer:-$SECONDS}
+spaceship_custom_exit_code() {
+  [[ $SPACESHIP_EXIT_CODE_SHOW == false || $RETVAL == 0 ]] && return
+
+  spaceship::section \
+    "$SPACESHIP_EXIT_CODE_COLOR" \
+    " " \
+    "${SPACESHIP_EXIT_CODE_SYMBOL}$RETVAL$SPACESHIP_EXIT_CODE_SUFFIX" \
+    ""
 }
 
-function precmd() {
-  if [ $timer ]; then
-    timer_show=$(($SECONDS - $timer))
-    unset timer
-  fi
+function spaceship_rprompt_prefix() {
+  echo -n "$RPROMPT_PREFIX"
+}
+
+function spaceship_rprompt_suffix() {
+  echo -n "$RPROMPT_SUFFIX"
 }
 
 if [[ $SPACESHIP_PROMPT_SEPARATE_LINE == true ]]; then
   RPROMPT_PREFIX='%{'$'\e[1A''%}'
   RPROMPT_SUFFIX='%{'$'\e[1B''%}'
 fi
-
-RPS1='$RPROMPT_PREFIX$(rprompt)$RPROMPT_SUFFIX'
 
 # Set to this to use case-sensitive completion
 # export CASE_SENSITIVE="true"

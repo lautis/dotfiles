@@ -2,7 +2,7 @@ require 'rake'
 
 INSTALL_RUBY_VERSION = '2.5.0'.freeze
 HOMEBREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'.freeze
-SPACESHIP_URL = 'https://raw.githubusercontent.com/denysdovhan/spaceship-zsh-theme/master/spaceship.zsh'.freeze
+SPACESHIP_URL = 'https://github.com/denysdovhan/spaceship-prompt.git'.freeze
 FAST_AUTOCOMPLETE_REPO = 'git@github.com:zdharma/fast-syntax-highlighting.git'
                          .freeze
 OH_MY_ZSH_REPO = 'git@github.com:robbyrussell/oh-my-zsh.git'
@@ -18,6 +18,24 @@ end
 
 def osascript(script)
   system 'osascript', *script.split(/\n/).map { |line| ['-e', line] }.flatten
+end
+
+def themes_dir
+  File.join(ENV['HOME'], '.oh-my-zsh', 'custom', 'themes')
+end
+
+def spaceship_dir
+  File.join(themes_dir, 'spaceship-prompt')
+end
+
+def clone_or_update_spaceship
+  if File.exist?(spaceship_dir)
+    Dir.chdir(spaceship_dir) do
+      `git fetch`
+    end
+  else
+    `git clone #{SPACESHIP_URL} #{spaceship_dir}`
+  end
 end
 
 task default: %i[
@@ -65,9 +83,9 @@ namespace :zsh do
 
   desc 'Install ZSH Spaceship theme'
   task :spaceship do
-    themes_dir = File.join(ENV['HOME'], '.oh-my-zsh', 'custom', 'themes')
-    FileUtils::Verbose.mkdir_p(themes_dir)
-    `curl -o ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme #{SPACESHIP_URL}`
+    FileUtils::Verbose.mkdir_p(themes_dir) unless File.exist?(themes_dir)
+    clone_or_update_spaceship
+    `ln -sf spaceship-prompt/spaceship.zsh #{themes_dir}/spaceship.zsh-theme`
   end
 
   desc 'Install Oh My ZSH'
