@@ -6,7 +6,7 @@ This is how I roll (on a Mac).
 
 **Warning:** If you want to give these dotfiles a try, review and modify the settings before running this.
 
-This Git repository is not meant to be usable as is. Mix and match with your own taste and existing configurtion. It would be very surprising if anyone had the same applications purchased from App store.
+This Git repository is not meant to be usable as is. Mix and match with your own taste and existing configuration. It would be very surprising if anyone had the same applications purchased from App store.
 
 In fact, I'm not using a git repository to share dotfiles between machines. The dotfiles are stored on a network drive (Dropbox, iCloud Drive, etc.) that is mounted on my computers. Any changes will be automatically synchronised as the dotfiles are symlinked to home directory.
 
