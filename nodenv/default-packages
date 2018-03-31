@@ -1,2 +1,4 @@
 yarn
 typescript
+ts-node
+lerna
