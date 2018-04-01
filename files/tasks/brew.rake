@@ -13,7 +13,7 @@ namespace :brew do
 
   desc 'Install Mac App Store helper'
   task :mas do
-    `brew install mas`
+    `brew install mas` if `which mas`.empty?
   end
 
   desc 'Install must have packages'
