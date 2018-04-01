@@ -1,4 +1,10 @@
-task rust: ['rust:rustup', 'rust:download_sources']
+task rust: [
+  'rust:rustup',
+  'rust:install',
+  'rust:download_sources',
+  'rust:rustfmt',
+  'rust:clippy'
+]
 
 namespace :rust do
   task :rustup do
@@ -9,6 +15,17 @@ namespace :rust do
       `rustup update`
     end
   end
+
+  task :install do
+    `rustup install stable`
+  end
+
+  task :rustfmt do
+    `rustup component add rustfmt-preview`
+  end
+
+  task :clippy do
+    `cargo +nightly install clippy`
   end
 
   task :download_sources do
