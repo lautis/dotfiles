@@ -1,14 +1,21 @@
 HOMEBREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'.freeze
 
 desc 'Setup Brew'
-task brew: ['brew:install', 'brew:mas', 'brew:bundle']
+task brew: ['brew:install', 'brew:mas', 'brew:upgrade', 'brew:bundle']
 
 namespace :brew do
   desc 'Install homebrew'
   task :install do
     if `which brew`.empty?
       `/usr/bin/ruby -e "$(curl -fsSL #{HOMEBREW_URL})" </dev/null`
+    else
+      `brew update`
     end
+  end
+
+  desc 'Upgrade installed packages'
+  task :upgrade do
+    `brew upgrade`
   end
 
   desc 'Install Mac App Store helper'
