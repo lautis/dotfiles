@@ -4,9 +4,9 @@ base-devel
 curl
 docker
 docker-compose
-git
 emojify
 fasd
+git
 go
 jq
 llvm
