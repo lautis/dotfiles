@@ -1,5 +1,6 @@
 module ZSH
   SPACESHIP_URL = 'https://github.com/denysdovhan/spaceship-prompt.git'.freeze
+  EMOJI_CLI_REPO = 'https://github.com/b4b4r07/emoji-cli.git'.freeze
   FAST_AUTOCOMPLETE_REPO = 'git@github.com:zdharma/fast-syntax-highlighting.git'
                            .freeze
   OH_MY_ZSH_REPO = 'git@github.com:robbyrussell/oh-my-zsh.git'
@@ -25,6 +26,10 @@ module ZSH
     FileUtils::Verbose.mkdir_p(themes_dir) unless File.exist?(themes_dir)
     clone_or_update_spaceship
     symlink_spaceship_theme
+  end
+
+  def setup_emoji_cli
+    clone_or_update(EMOJI_CLI_REPO, emoji_cli_dir)
   end
 
   def setup_fzf
@@ -85,6 +90,10 @@ module ZSH
     File.join(themes_dir, 'spaceship-prompt')
   end
 
+  def emoji_cli_dir
+    File.join(plugins_dir, 'emoji-cli')
+  end
+
   def clone_or_update_spaceship
     clone_or_update(SPACESHIP_URL, spaceship_dir)
   end
@@ -109,7 +118,8 @@ task zsh: [
   'zsh:spaceship',
   'zsh:set_default',
   'zsh:fast_syntax_highlighting',
-  'zsh:fzf'
+  'zsh:fzf',
+  'zsh:emoji_cli'
 ]
 
 namespace :zsh do
@@ -123,6 +133,9 @@ namespace :zsh do
   task(:oh_my_zsh) { ZSH.setup_oh_my_zsh }
 
   task(:fast_syntax_highlighting) { ZSH.setup_fast_syntax_highlighting }
+
+  desc 'Install emoji-cli'
+  task(:emoji_cli) { ZSH.setup_emoji_cli }
 
   desc 'Install fzf'
   task(:fzf) { ZSH.setup_fzf }

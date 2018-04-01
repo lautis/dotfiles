@@ -29,6 +29,7 @@ mas 'Agenda', id: 1287445660
 
 brew 'docker-clean'
 brew 'elixir'
+brew 'emojify'
 brew 'fasd'
 brew 'fzf'
 brew 'gifsicle'

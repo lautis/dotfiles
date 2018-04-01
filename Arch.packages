@@ -5,8 +5,10 @@ curl
 docker
 docker-compose
 git
+emojify
 fasd
 go
+jq
 llvm
 mosh
 nodenv
