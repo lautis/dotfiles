@@ -10,7 +10,7 @@ module ZSH
   extend self
 
   def change_default_shell
-    `chsh -s #{ZSH_PATH}`
+    `chsh -s #{ZSH_PATH}` if ENV['SHELL'] != ZSH_PATH
   end
 
   def setup_oh_my_zsh
