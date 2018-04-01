@@ -4,13 +4,12 @@ module ZSH
                            .freeze
   OH_MY_ZSH_REPO = 'git@github.com:robbyrussell/oh-my-zsh.git'
                    .freeze
-  ZSH_PATH = '/usr/local/bin/zsh'.freeze
   SHELLS_FILE = '/etc/shells'.freeze
 
   extend self
 
   def change_default_shell
-    `chsh -s #{ZSH_PATH}` if ENV['SHELL'] != ZSH_PATH
+    `chsh -s #{zsh_path}` if ENV['SHELL'] != zsh_path
   end
 
   def setup_oh_my_zsh
@@ -38,14 +37,22 @@ module ZSH
   end
 
   def add_shell
-    return unless File.exist?(ZSH_PATH)
-    unless File.read(SHELLS_FILE).include?(ZSH_PATH)
+    return unless File.exist?(zsh_path)
+    unless File.read(SHELLS_FILE).include?(zsh_path)
       puts 'Adding ZSH to list of acceptable shells'
-      `echo #{ZSH_PATH} | sudo tee -a #{SHELLS_FILE}`
+      `echo #{zsh_path} | sudo tee -a #{SHELLS_FILE}`
     end
   end
 
   private
+
+  def zsh_path
+    if RUBY_PLATFORM.include?('darwin')
+      '/usr/local/bin/zsh'
+    else
+      '/usr/bin/zsh'
+    end.freeze
+  end
 
   def oh_my_zsh_dir
     File.join(ENV['HOME'], '.oh-my-zsh')
