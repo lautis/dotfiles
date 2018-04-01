@@ -17,6 +17,7 @@ readline
 ruby-build
 rustup
 sshuttle
+sudo
 the_silver_searcher
 tldr
 tmux
