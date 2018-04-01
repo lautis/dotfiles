@@ -2,8 +2,7 @@ task rust: [
   'rust:rustup',
   'rust:install',
   'rust:download_sources',
-  'rust:rustfmt',
-  'rust:clippy'
+  'rust:rustfmt'
 ]
 
 namespace :rust do
