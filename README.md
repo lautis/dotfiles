@@ -32,7 +32,7 @@ Configuration files containing personal information are redacted:
 * private SSH host-specific configuration
 * name/email from Git config
 
-I have a git configuration script to redact personal information. For example, the git config redaction is defined in in `git/config` as following:
+I have a git configuration script to redact personal information. This is configured in the local `.git/config`. For example redact full name in gitconfig:
 
 ```
 [filter "gitconfig"]
