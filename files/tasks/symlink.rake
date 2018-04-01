@@ -1,6 +1,6 @@
 def symlinked_files
   Dir.glob('**/*').select do |file|
-    next false if %w[Brewfile Rakefile README.md LICENSE.txt].include? file
+    next false if %w[Arch.packages Brewfile Rakefile README.md LICENSE.txt].include? file
     next false if file.start_with?('files', '.')
     next false if File.directory? file
     true
