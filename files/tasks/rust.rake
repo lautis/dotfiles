@@ -9,10 +9,10 @@ task rust: [
 namespace :rust do
   task :rustup do
     # Path is set in zshenv
-    if `which rustup`.empty? && `which rustup-init`.empty?
-      `curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path`
-    elsif `which rustup`.empty?
+    if !command?('rustup') && command?('rustup-init')
       `rustup-init -y --no-modify-path`
+    elsif !command?('rustup')
+      `curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path`
     else
       `rustup update`
     end
@@ -20,6 +20,8 @@ namespace :rust do
 
   task :install do
     `rustup install stable`
+    `rustup install nightly`
+    `rustup default stable`
   end
 
   task :rustfmt do

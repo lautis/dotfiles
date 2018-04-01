@@ -6,7 +6,7 @@ task brew: ['brew:install', 'brew:mas', 'brew:upgrade', 'brew:bundle']
 namespace :brew do
   desc 'Install homebrew'
   task :install do
-    if `which brew`.empty?
+    if command?('brew')
       `/usr/bin/ruby -e "$(curl -fsSL #{HOMEBREW_URL})" </dev/null`
     else
       `brew update`
@@ -20,7 +20,7 @@ namespace :brew do
 
   desc 'Install Mac App Store helper'
   task :mas do
-    `brew install mas` if `which mas`.empty?
+    `brew install mas` unless command?('mas')
   end
 
   desc 'Install must have packages'
