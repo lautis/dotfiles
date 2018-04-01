@@ -27,7 +27,6 @@ mas '1Blocker', id: 1107421413
 mas 'Giphy Capture', id: 668208984
 mas 'Agenda', id: 1287445660
 
-brew 'autojump'
 brew 'docker-clean'
 brew 'elixir'
 brew 'fasd'
