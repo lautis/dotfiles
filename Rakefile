@@ -2,7 +2,7 @@ require 'rake'
 Dir.glob('files/tasks/*.rake').each { |r| load r }
 
 task default: %i[
-  symlink brew macos:xcode zsh ruby java node rust atom pygments macos
+  symlink brew macos:xcode zsh ruby java node rust atom macos
 ]
 
 task linux: %i[
@@ -33,9 +33,4 @@ task :java do
   Dir['/Library/Java/JavaVirtualMachines/*'].each do |jdk_path|
     `jenv add #{jdk_path}/Contents/Home`
   end
-end
-
-desc 'Install pygments'
-task :pygments do
-  `sudo easy_install Pygments`
 end
