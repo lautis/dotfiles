@@ -1,6 +1,5 @@
 require 'rake'
 
-INSTALL_RUBY_VERSION = '2.5.0'.freeze
 HOMEBREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'.freeze
 SPACESHIP_URL = 'https://github.com/denysdovhan/spaceship-prompt.git'.freeze
 FAST_AUTOCOMPLETE_REPO = 'git@github.com:zdharma/fast-syntax-highlighting.git'
@@ -126,16 +125,32 @@ end
 desc 'Install Ruby'
 task ruby: ['ruby:install', 'ruby:set_default', 'ruby:configure_bundler']
 
+def latest_stable_version(versions)
+  versions
+    .map(&:strip)
+    .select { |version| version.match?(/^\d+\.\d+\.\d+$/) }
+    .sort_by { |version| Gem::Version.new(version) }
+    .last
+end
+
+def latest_stable_ruby_version
+  latest_stable_version(`ruby-build --definitions`.split("\n"))
+end
+
+def latest_stable_node_version
+  latest_stable_version(`nodenv install --list`.split("\n"))
+end
+
 namespace :ruby do
   task :install do
     command = 'CFLAGS="-march=native -Os" ' \
       'RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)" ' \
-      "rbenv install #{INSTALL_RUBY_VERSION}"
+      "rbenv install #{latest_stable_ruby_version}"
     system command
   end
 
   task :set_default do
-    `rbenv global #{INSTALL_RUBY_VERSION}`
+    `rbenv global #{latest_stable_ruby_version}`
   end
 
   task :configure_bundler do
@@ -174,11 +189,11 @@ task node: ['node:install', 'node:set_default', 'node:install_flow']
 
 namespace :node do
   task :install do
-    `nodenv install $(nodenv install --list|grep '\s[0-9]'| tail -n 1)`
+    `nodenv install #{latest_stable_node_version}`
   end
 
   task :set_default do
-    `nodenv global $(nodenv install --list|grep '\s[0-9]'| tail -n 1)`
+    `nodenv global #{latest_stable_node_version}`
   end
 
   task :install_flow do
