@@ -75,7 +75,7 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(
   gem git fasd bundler colored-man-pages docker docker-compose rake extract
-  rails yarn fast-syntax-highlighting
+  rails yarn fast-syntax-highlighting emoji-cli
 )
 
 cdpath=(.. ~ ~/Documents)
@@ -157,3 +157,5 @@ _load-toolchain-env jenv
 
 [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

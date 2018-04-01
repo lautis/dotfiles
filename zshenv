@@ -6,3 +6,5 @@ export PATH=$HOME/.cargo/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export EDITOR='atom --wait'
 export PAGER='less'
 export ARCHFLAGS='-arch x86_64'
+
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border --inline-info'

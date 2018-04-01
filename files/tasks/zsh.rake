@@ -4,6 +4,7 @@ module ZSH
                            .freeze
   OH_MY_ZSH_REPO = 'git@github.com:robbyrussell/oh-my-zsh.git'
                    .freeze
+  FZF_REPO = 'https://github.com/junegunn/fzf.git'.freeze
   SHELLS_FILE = '/etc/shells'.freeze
 
   extend self
@@ -24,6 +25,17 @@ module ZSH
     FileUtils::Verbose.mkdir_p(themes_dir) unless File.exist?(themes_dir)
     clone_or_update_spaceship
     symlink_spaceship_theme
+  end
+
+  def setup_fzf
+    fzf_options = '--key-bindings --completion --no-update-rc --no-bash'
+    if command?('brew')
+      `brew reinstall fzf`
+      `$(brew --prefix)/opt/fzf/install #{fzf_options}`
+    else
+      clone_or_update(FZF_REPO, File.join(ENV['HOME'], '.fzf'))
+      `~/.fzf/install #{fzf_options}`
+    end
   end
 
   def setup_fast_syntax_highlighting
@@ -96,7 +108,8 @@ task zsh: [
   'zsh:oh_my_zsh',
   'zsh:spaceship',
   'zsh:set_default',
-  'zsh:fast_syntax_highlighting'
+  'zsh:fast_syntax_highlighting',
+  'zsh:fzf'
 ]
 
 namespace :zsh do
@@ -110,6 +123,9 @@ namespace :zsh do
   task(:oh_my_zsh) { ZSH.setup_oh_my_zsh }
 
   task(:fast_syntax_highlighting) { ZSH.setup_fast_syntax_highlighting }
+
+  desc 'Install fzf'
+  task(:fzf) { ZSH.setup_fzf }
 
   desc 'Change default shell to ZSH'
   task(:set_default) { ZSH.change_default_shell }

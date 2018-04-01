@@ -6,6 +6,7 @@ docker
 docker-compose
 git
 fasd
+go
 llvm
 mosh
 nodenv
