@@ -28,12 +28,7 @@ module ZSH
 
   def setup_fast_syntax_highlighting
     plugin_path = File.join(plugins_dir, 'fast-syntax-highlighting')
-
-    if File.directory?(plugin_path)
-      `git -C #{plugin_path} pull`
-    else
-      `git clone #{FAST_AUTOCOMPLETE_REPO} #{plugin_path}`
-    end
+    clone_or_update(FAST_AUTOCOMPLETE_REPO, plugin_path)
   end
 
   def add_shell
@@ -45,6 +40,14 @@ module ZSH
   end
 
   private
+
+  def clone_or_update(repo_url, directory)
+    if File.exist?(directory)
+      `git -C #{directory} pull`
+    else
+      `git clone #{repo_url} #{directory}`
+    end
+  end
 
   def zsh_path
     if RUBY_PLATFORM.include?('darwin')
@@ -71,11 +74,7 @@ module ZSH
   end
 
   def clone_or_update_spaceship
-    if File.exist?(spaceship_dir)
-      `git -C #{spaceship_dir} fetch`
-    else
-      `git clone #{SPACESHIP_URL} #{spaceship_dir}`
-    end
+    clone_or_update(SPACESHIP_URL, spaceship_dir)
   end
 
   def symlink_spaceship_theme
