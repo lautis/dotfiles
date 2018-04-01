@@ -20,7 +20,7 @@ namespace :ruby do
     readline_dir = command?('brew') ? '$(brew --prefix readline)' : '/usr/lib'
     command = 'CFLAGS="-march=native -Os" ' \
       "RUBY_CONFIGURE_OPTS=--with-readline-dir='#{readline_dir}' " \
-      "rbenv install #{latest_stable_ruby_version}"
+      "rbenv install -s #{latest_stable_ruby_version}"
     system command
   end
 

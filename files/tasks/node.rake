@@ -10,7 +10,7 @@ task node: ['node:install', 'node:set_default']
 namespace :node do
   desc 'Install latest Node.js'
   task :install do
-    `nodenv install #{latest_stable_node_version}`
+    `nodenv install -s #{latest_stable_node_version}`
   end
 
   desc 'Set default Node.js version for nodenv'
