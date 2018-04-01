@@ -1,13 +1,8 @@
 require 'rake'
 Dir.glob('files/tasks/*.rake').each { |r| load r }
 
-def osascript(script)
-  system 'osascript', *script.split(/\n/).map { |line| ['-e', line] }.flatten
-end
-
 task default: %i[
-  symlink brew xcode zsh ruby java node rust atom pygments
-  terminal macos
+  symlink brew macos:xcode zsh ruby java node rust atom pygments macos
 ]
 
 task linux: %i[
@@ -33,11 +28,6 @@ task :symlink do
   end
 end
 
-desc 'Install Xcode tools'
-task :xcode do
-  `xcode-select --install`
-end
-
 desc 'Setup JEnv Java versions'
 task :java do
   Dir['/Library/Java/JavaVirtualMachines/*'].each do |jdk_path|
@@ -48,19 +38,4 @@ end
 desc 'Install pygments'
 task :pygments do
   `sudo easy_install Pygments`
-end
-
-desc 'Configure Terminal.app'
-task :terminal do
-  `open files/Brewer.terminal`
-  osascript <<-OSASCRIPT
-    tell application "Terminal"
-      set default settings to settings set "Brewer"
-    end tell
-  OSASCRIPT
-end
-
-desc 'MacOS settings'
-task :macos do
-  `./files/defaults`
 end
