@@ -3,7 +3,7 @@ is_in_git_repo() {
 }
 
 fzf-down() {
-  fzf --height 70% "$@" --border
+  fzf --height 50% "$@" --border
 }
 
 unalias gf 2>/dev/null
