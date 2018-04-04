@@ -34,6 +34,7 @@
 	wds = diff --color-words --staged
 	; Publish the current branch
 	pub = "!f() { git push -u ${1:-origin} `git symbolic-ref HEAD`; }; f"
+	pr  = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 [diff]
 	mnemonicprefix = true
 	indentHeuristic = true
