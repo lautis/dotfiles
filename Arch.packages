@@ -4,6 +4,7 @@ base-devel
 curl
 docker
 docker-compose
+dnsutils
 emojify
 fasd
 git
