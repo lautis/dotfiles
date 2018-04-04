@@ -47,6 +47,7 @@ __fzf_fasd_zsh_completion() {
   fi
 
   zle redisplay
+  zle accept-line
   typeset -f zle-line-init >/dev/null && zle zle-line-init
 }
 
