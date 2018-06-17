@@ -26,6 +26,7 @@ mas 'AreenaX', id: 1018799028
 mas '1Blocker', id: 1107421413
 mas 'Giphy Capture', id: 668208984
 mas 'Agenda', id: 1287445660
+mas 'Smart Guide', id: 1394121296
 
 brew 'docker-clean'
 brew 'elixir'
