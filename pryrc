@@ -22,6 +22,14 @@ end
 module Debundle
   VERSION = '1.1.0'
 
+  def self.silence_warnings(&block)
+    warn_level = $VERBOSE
+    $VERBOSE = nil
+    result = block.call
+    $VERBOSE = warn_level
+    result
+  end
+
   def self.debundle!
     return unless defined?(Bundler)
     return unless Gem.post_reset_hooks.reject!{ |hook|
@@ -32,8 +40,10 @@ module Debundle
     end
     Gem.clear_paths
 
-    load 'rubygems/core_ext/kernel_require.rb'
-    load 'rubygems/core_ext/kernel_gem.rb'
+    silence_warnings do
+      load 'rubygems/core_ext/kernel_require.rb'
+      load 'rubygems/core_ext/kernel_gem.rb'
+    end
   rescue
     warn "DEBUNDLE.RB FAILED"
     raise
