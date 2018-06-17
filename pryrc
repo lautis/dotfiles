@@ -13,6 +13,11 @@ old_winch = trap 'WINCH' do
   old_winch.call if old_winch.respond_to?(:call)
 end
 
+Pry.config.commands.command 'pbcopy', 'Copy input to clipboard' do |input|
+  input = input ? target.eval(input) : _pry_.last_result
+  IO.popen('pbcopy', 'w') { |io| io << input }
+end
+
 ### START debundle.rb ###
 
 # MIT License
