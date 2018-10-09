@@ -19,6 +19,9 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 defaults write com.apple.Safari ShowFavoritesBar -bool false
 defaults write com.apple.Safari ShowFavoritesBar-v2 -bool false
 
+# Show full URL
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+
 # Send DNT
 defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 
@@ -49,4 +52,4 @@ defaults write com.apple.dock wvous-bl-corner -int 4
 defaults write com.apple.dock wvous-bl-modifier -int 0
 
 # Faster maximise animation
-defaults write -g NSWindowResizeTime -float 0.03 
+defaults write -g NSWindowResizeTime -float 0.03
