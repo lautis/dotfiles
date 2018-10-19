@@ -70,6 +70,7 @@ brew 'tmux'
 brew 'tmuxinator-completion'
 brew 'zsh'
 brew 'zsh-autosuggestions'
+brew 'yarn', without_node: true
 
 cask 'atom'
 cask 'charles'
