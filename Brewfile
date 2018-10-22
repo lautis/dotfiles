@@ -29,7 +29,6 @@ mas 'Giphy Capture', id: 668208984
 mas 'Agenda', id: 1287445660
 mas 'Smart Guide', id: 1394121296
 
-brew 'datawire/blackbird/telepresence'
 brew 'docker-clean'
 brew 'emojify'
 brew 'fasd'
@@ -63,6 +62,7 @@ brew 'ruby-build'
 brew 'rustup-init'
 brew 'socat'
 brew 'sshuttle'
+brew 'telepresence'
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
 brew 'tldr'
