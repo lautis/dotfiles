@@ -74,7 +74,7 @@ fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(
-  gem git fasd bundler colored-man-pages docker docker-compose rake extract
+  gem git fasd bundler colored-man-pages docker docker-compose rake rake-fast extract
   rails yarn fast-syntax-highlighting emoji-cli fzf-git fzf-fasd
 )
 

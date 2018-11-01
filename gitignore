@@ -5,3 +5,4 @@
 *.log
 .tags
 .tags1
+.rake_tasks
