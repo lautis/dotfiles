@@ -1,4 +1,3 @@
-aurman
 avahi
 base-devel
 curl
@@ -8,7 +7,6 @@ dnsutils
 emojify
 fasd
 git
-go
 jq
 llvm
 mosh
@@ -28,3 +26,4 @@ tmux
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
+yay
