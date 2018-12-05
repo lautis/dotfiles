@@ -56,3 +56,6 @@ defaults write -g NSWindowResizeTime -float 0.03
 
 # Show Transmit Disk menu
 defaults write com.panic.Transmit ShowTransmitMenu 1
+
+local_defaults="$(dirname $BASH_SOURCE[0])/defaults.local"
+test -x $local_defaults && $local_defaults

@@ -1,4 +1,5 @@
 ssh/config.local
 gem/credentials
+files/defaults.local
 npmrc
 *.dropshareconnection
