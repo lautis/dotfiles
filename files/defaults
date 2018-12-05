@@ -53,3 +53,6 @@ defaults write com.apple.dock wvous-bl-modifier -int 0
 
 # Faster maximise animation
 defaults write -g NSWindowResizeTime -float 0.03
+
+# Show Transmit Disk menu
+defaults write com.panic.Transmit ShowTransmitMenu 1
