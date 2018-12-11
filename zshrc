@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 
+ZSH_DISABLE_COMPFIX=true
+
 SPACESHIP_DOCKER_SHOW="false"
 SPACESHIP_CHAR_SYMBOL="❯ "
 SPACESHIP_PROMPT_SEPARATE_LINE="true"
