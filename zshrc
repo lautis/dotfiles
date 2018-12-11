@@ -18,7 +18,7 @@ SPACESHIP_EXEC_TIME_SUFFIX=")"
 SPACESHIP_EXEC_TIME_COLOR="yellow"
 SPACESHIP_EXEC_TIME_ELAPSED="1"
 
-SPACESHIP_PROMPT_ORDER=(time user host dir git line_sep char)
+SPACESHIP_PROMPT_ORDER=(user host dir git line_sep char)
 SPACESHIP_RPROMPT_ORDER=(rprompt_prefix custom_exec_time custom_exit_code rprompt_suffix)
 
 # Set to the name theme to load.
