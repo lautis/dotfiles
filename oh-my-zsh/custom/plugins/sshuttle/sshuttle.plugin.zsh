@@ -4,7 +4,7 @@ host2ip() {
       dscacheutil -q host -a name $host | grep "address:" |awk {'print $2'}
     done
   else # Linux
-    getent ahosts $* | awk {'print $1'}
+    getent ahosts $* | awk {'print $1'} | awk '!array[$0]++'
   fi
 }
 
