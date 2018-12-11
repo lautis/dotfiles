@@ -1,7 +1,7 @@
 host2ip() {
   if which dscacheutil > /dev/null 2>&1; then # MacOS
     for host in $@; do
-      dscacheutil -q host -a name $host | grep "address:" |awk {'print $2'}
+      dscacheutil -q host -a name $host | grep "address:" | awk {'print $2'}
     done
   else # Linux
     getent ahosts $* | awk {'print $1'} | awk '!array[$0]++'
