@@ -31,7 +31,6 @@ fi
 source $ZSH/lib/completion.zsh
 source $ZSH/lib/directories.zsh
 source $ZSH/lib/functions.zsh
-source $ZSH/lib/grep.zsh
 source $ZSH/lib/history.zsh
 source $ZSH/lib/key-bindings.zsh
 source $ZSH/lib/spectrum.zsh
