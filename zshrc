@@ -135,7 +135,11 @@ expand-or-complete-with-redisplay() {
 zle -N expand-or-complete-with-redisplay
 bindkey "^I" expand-or-complete-with-redisplay
 
-source $ZSH/oh-my-zsh.sh
+if [ -f $ZSH/custom/oh-my-zsh.sh ]; then
+  source $ZSH/custom/oh-my-zsh.sh
+else
+  source $ZSH/oh-my-zsh.sh
+fi
 
 if [ -f /usr/local/share/zsh/site-functions/_tmuxinator ]; then
   source /usr/local/share/zsh/site-functions/_tmuxinator
@@ -155,7 +159,6 @@ function _load-toolchain-env() {
 
 _load-toolchain-env rbenv
 _load-toolchain-env nodenv
-_load-toolchain-env jenv
 
 [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
