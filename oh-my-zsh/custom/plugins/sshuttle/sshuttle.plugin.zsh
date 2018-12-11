@@ -22,3 +22,7 @@ tunnel-but() {
 ssh-vpn() {
   sshuttle -HNvr $1;
 }
+
+compdef _hosts tunnel-hosts
+compdef _hosts tunnel-bug
+compdef _ssh_hosts ssh-vpn
