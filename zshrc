@@ -94,13 +94,12 @@ if command -v hub > /dev/null; then alias git=hub; fi
 
 # Completion finetunage
 
-# list of completers to use
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
-zstyle ':completion:*:match:*' original only
+# enable approximate matches
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # allow one error for every three characters typed in approximate completer
-zstyle -e ':completion:*:approximate:*' max-errors \
-    'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3)) numeric)'
 
 # insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
@@ -110,8 +109,8 @@ zstyle ':completion:*' insert-tab false
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
 zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format 'No matches for: %d'
-zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+zstyle ':completion:*:warnings' format 'No matches for: %F{214}%d%b'
+zstyle ':completion:*:corrections' format '%U%F{green}%d (errors: %e)%f%u'
 zstyle ':completion:*' group-name ''
 
 # offer indices before parameters in subscripts
@@ -124,10 +123,6 @@ zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
     '*?.old' '*?.pro'
 # nonexisting commands
 zstyle ':completion:*:functions' ignored-patterns '_*'
-
-# Show menu for kill
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*' force-list always
 
 expand-or-complete-with-redisplay() {
   zle expand-or-complete
