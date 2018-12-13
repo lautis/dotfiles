@@ -6,15 +6,7 @@ if [[ -z "$ZSH_CACHE_DIR" ]]; then
   ZSH_CACHE_DIR="$ZSH/cache"
 fi
 
-# Check for updates on initial load...
-if [ "$DISABLE_AUTO_UPDATE" != "true" ]; then
-  env ZSH=$ZSH ZSH_CACHE_DIR=$ZSH_CACHE_DIR DISABLE_UPDATE_PROMPT=$DISABLE_UPDATE_PROMPT zsh -f $ZSH/tools/check_for_upgrade.sh
-fi
-
 # Initializes Oh My Zsh
-
-# add a function path
-fpath=($ZSH/functions $ZSH/completions $fpath)
 
 # Load all stock functions (from $fpath files) called below.
 autoload -U compinit
@@ -22,7 +14,7 @@ autoload -U compinit
 # Set ZSH_CUSTOM to the path where your custom config files
 # and plugins exists, or else we will use the default custom/
 if [[ -z "$ZSH_CUSTOM" ]]; then
-    ZSH_CUSTOM="$ZSH/custom"
+  ZSH_CUSTOM="$ZSH/custom"
 fi
 
 
@@ -67,17 +59,8 @@ if [ -z "$ZSH_COMPDUMP" ]; then
   ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
 fi
 
-if [[ $ZSH_DISABLE_COMPFIX != true ]]; then
-  # If completion insecurities exist, warn the user
-  if ! compaudit &>/dev/null; then
-    handle_completion_insecurities
-  fi
-  # Load only from secure directories
-  compinit -i -d "${ZSH_COMPDUMP}"
-else
-  # If the user wants it, load from all found directories
-  compinit -u -d "${ZSH_COMPDUMP}"
-fi
+# If the user wants it, load from all found directories
+compinit -u -d "${ZSH_COMPDUMP}"
 
 # Load all of the plugins that were defined in ~/.zshrc
 for plugin ($plugins); do
@@ -89,19 +72,5 @@ for plugin ($plugins); do
 done
 unset plugin
 
-# Load all of your custom configurations from custom/
-for config_file ($ZSH_CUSTOM/*.zsh(N)); do
-  source $config_file
-done
-unset config_file
-
 # Load the theme
-if [ ! "$ZSH_THEME" = ""  ]; then
-  if [ -f "$ZSH_CUSTOM/$ZSH_THEME.zsh-theme" ]; then
-    source "$ZSH_CUSTOM/$ZSH_THEME.zsh-theme"
-  elif [ -f "$ZSH_CUSTOM/themes/$ZSH_THEME.zsh-theme" ]; then
-    source "$ZSH_CUSTOM/themes/$ZSH_THEME.zsh-theme"
-  else
-    source "$ZSH/themes/$ZSH_THEME.zsh-theme"
-  fi
-fi
+source "$ZSH_CUSTOM/themes/$ZSH_THEME.zsh-theme"
