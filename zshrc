@@ -92,25 +92,6 @@ alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 
 if command -v hub > /dev/null; then alias git=hub; fi
 
-function is-callable {
-  (( $+commands[$1] || $+functions[$1] || $+aliases[$1] || $+builtins[$1] ))
-}
-
-if is-callable 'dircolors'; then
-  eval "$(dircolors)"
-elif is-callable 'gdircolors'; then
-  eval "$(gdircolors)"
-else
-
-  if [[ -z "$LS_COLORS" ]]; then
-    #export LS_COLORS='di=1;34:ln=1;36:so=1;35:pi=33:ex=1;32:bd=1;33:cd=1;33:su=37;41:sg=30;43:tw=1;34:ow=1;34'
-  fi
-
-  if [[ -z "$LS_COLORS" ]]; then
-    #export LS_COLORS='di=1;96:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
-  fi
-fi
-
 if [ -f $ZSH/custom/oh-my-zsh.sh ]; then
   source $ZSH/custom/oh-my-zsh.sh
 else

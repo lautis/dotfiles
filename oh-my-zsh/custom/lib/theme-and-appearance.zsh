@@ -1,7 +1,7 @@
 # ls colors
 autoload -U colors && colors
 
-if is-callable 'dircolors'; then
+if (( $+commands[dircolors] )); then
   if [[ -z "$LS_COLORS" ]]; then
     if [[ -s "$HOME/.dir_colors" ]]; then
       eval "$(dircolors --sh "$HOME/.dir_colors")"
