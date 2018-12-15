@@ -9,7 +9,7 @@ fi
 # Initializes Oh My Zsh
 
 # Load all stock functions (from $fpath files) called below.
-autoload -U compinit
+autoload -Uz compinit
 
 # Set ZSH_CUSTOM to the path where your custom config files
 # and plugins exists, or else we will use the default custom/
@@ -27,7 +27,7 @@ source $ZSH/lib/history.zsh
 source $ZSH/lib/key-bindings.zsh
 source $ZSH/lib/spectrum.zsh
 source $ZSH/lib/termsupport.zsh
-source $ZSH/lib/theme-and-appearance.zsh
+source $ZSH_CUSTOM/lib/theme-and-appearance.zsh
 source $ZSH_CUSTOM/lib/misc.zsh
 
 is_plugin() {
@@ -46,21 +46,16 @@ for plugin ($plugins); do
   fi
 done
 
-# Figure out the SHORT hostname
-if [[ "$OSTYPE" = not-darwin* ]]; then
-  # macOS's $HOST changes with dhcp, etc. Use ComputerName if possible.
-  SHORT_HOST=$(scutil --get ComputerName 2>/dev/null) || SHORT_HOST=${HOST/.*/}
+# Initialize the completion system ignoring insecure directories with a
+# cache time of 20 hours, so it should almost always regenerate the first time a
+# shell is opened each day.
+_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
+if (( $#_comp_files )); then
+  compinit -i -C
 else
-  SHORT_HOST=${HOST/.*/}
+  compinit -i
 fi
-
-# Save the location of the current completion dump file.
-if [ -z "$ZSH_COMPDUMP" ]; then
-  ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
-fi
-
-# If the user wants it, load from all found directories
-compinit -u -d "${ZSH_COMPDUMP}"
+unset _comp_files
 
 # Load all of the plugins that were defined in ~/.zshrc
 for plugin ($plugins); do
