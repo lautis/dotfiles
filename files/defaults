@@ -2,6 +2,12 @@
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 35
 
+############
+# Trackpad
+############
+
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+
 #############
 # Safari
 #############
