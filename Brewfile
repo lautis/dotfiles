@@ -30,6 +30,7 @@ mas '1Blocker', id: 1107421413
 mas 'Giphy Capture', id: 668208984
 mas 'Agenda', id: 1287445660
 mas 'Smart Guide', id: 1394121296
+mas 'TweetBot 3', id: 1384080005
 
 brew 'bat'
 brew 'docker-clean'
