@@ -31,6 +31,7 @@ mas 'Giphy Capture', id: 668208984
 mas 'Agenda', id: 1287445660
 mas 'Smart Guide', id: 1394121296
 
+brew 'bat'
 brew 'docker-clean'
 brew 'emojify'
 brew 'dive'
@@ -39,7 +40,6 @@ brew 'fzf'
 brew 'gifsicle'
 brew 'git'
 brew 'heroku/brew/heroku'
-brew 'highlight'
 brew 'htop'
 brew 'hub'
 brew 'imagemagick'
