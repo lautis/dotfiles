@@ -77,7 +77,7 @@ brew 'yarn', args: ['without-node']
 
 cask 'atom'
 cask 'charles'
-cask 'docker-edge'
+cask 'docker'
 cask 'dropshare'
 cask 'firefox'
 cask 'flowdock'
