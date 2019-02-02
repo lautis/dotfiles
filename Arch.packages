@@ -7,11 +7,11 @@ docker-compose
 dnsutils
 emojify
 fasd
-fx
 git
 jq
 llvm
 mosh
+nodejs-fx
 nodenv
 nodenv-node-build-git
 nss-mdns
