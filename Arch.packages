@@ -1,5 +1,6 @@
 avahi
 base-devel
+bat
 curl
 docker
 docker-compose
@@ -26,5 +27,4 @@ tldr
 tmux
 zsh
 zsh-autosuggestions
-zsh-syntax-highlighting
 yay
