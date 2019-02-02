@@ -17,11 +17,7 @@ task ruby: ['ruby:install', 'ruby:set_default', 'ruby:configure_bundler']
 
 namespace :ruby do
   task :install do
-    readline_dir = command?('brew') ? '$(brew --prefix readline)' : '/usr/lib'
-    command = 'CFLAGS="-march=native -Os" ' \
-      "RUBY_CONFIGURE_OPTS=--with-readline-dir='#{readline_dir}' " \
-      "rbenv install -s #{latest_stable_ruby_version}"
-    system command
+    system "rbenv install -s #{latest_stable_ruby_version}"
   end
 
   task :set_default do
