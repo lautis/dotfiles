@@ -6,6 +6,7 @@ docker-compose
 dnsutils
 emojify
 fasd
+fx
 git
 jq
 llvm
