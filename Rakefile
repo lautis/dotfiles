@@ -9,7 +9,7 @@ Dir.glob('files/tasks/*.rake').each { |r| load r }
 task common: %i[zsh ruby node rust]
 
 desc 'Run everything on Mac'
-task mac: %i[symlink brew macos:xcode common java atom macos]
+task mac: %i[symlink brew macos:xcode common java vscode macos]
 
 desc 'Run everything on Arch Linux'
 task arch: %i[symlink pacman common]

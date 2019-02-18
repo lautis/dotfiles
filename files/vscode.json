@@ -1,0 +1,17 @@
+{
+  "ignoreUploadFiles": ["projects.json", "projects_cache_git.json"],
+  "ignoreUploadFolders": ["workspaceStorage"],
+  "ignoreExtensions": [],
+  "replaceCodeSettings": {},
+  "gistDescription": "Visual Studio Code Settings Sync Gist",
+  "version": 324,
+  "token": "REDACTED_ACCESS_TOKEN",
+  "downloadPublicGist": false,
+  "supportedFileExtensions": ["json", "code-snippets"],
+  "openTokenLink": true,
+  "disableUpdateMessage": false,
+  "askGistName": false,
+  "customFiles": {},
+  "hostName": null,
+  "useCliBaseInstallation": true
+}

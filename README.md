@@ -27,7 +27,7 @@ rake
 
 Configuration files containing personal information are redacted:
 
-* Atom base configuration with Gist id and access token
+* Visual Studio Code settings sync access token
 * NPM/Rubygems credentials
 * private SSH host-specific configuration
 * name/email from Git config
