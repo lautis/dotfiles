@@ -1,3 +1,2 @@
 gitconfig filter=gitconfig
-files/atom.cson filter=atom-config
 files/vscode.json filter=vscode-config
