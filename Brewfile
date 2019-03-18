@@ -34,6 +34,7 @@ mas 'TweetBot 3', id: 1384080005
 mas 'PiPifier', id: 1160374471
 
 brew 'bat'
+brew 'cargo-completion'
 brew 'docker-clean'
 brew 'emojify'
 brew 'dive'
