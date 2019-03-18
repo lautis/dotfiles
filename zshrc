@@ -98,6 +98,9 @@ else
   source $ZSH/oh-my-zsh.sh
 fi
 
+# Remove conflicting alias
+unalias rg
+
 # Completion finetune
 
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
