@@ -3,7 +3,7 @@ def osascript(script)
 end
 
 desc 'MacOS specific configuration'
-task macos: ['mac:defaults', 'mac:terminal']
+task macos: ['macos:defaults', 'macos:terminal']
 
 namespace :macos do
   desc 'Setup xcode terminal tooling'
