@@ -99,7 +99,7 @@ else
 fi
 
 # Remove conflicting alias
-unalias rg
+(( ${+aliases[rg]} )) && unalias rg
 
 # Completion finetune
 
