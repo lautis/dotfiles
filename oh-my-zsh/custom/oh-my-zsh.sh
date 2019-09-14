@@ -11,6 +11,17 @@ fi
 # Load all stock functions (from $fpath files) called below.
 autoload -Uz compinit
 
+# Initialize the completion system ignoring insecure directories with a
+# cache time of 20 hours, so it should almost always regenerate the first time a
+# shell is opened each day.
+_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
+if (( $#_comp_files )); then
+  compinit -i -C
+else
+  compinit -i
+fi
+unset _comp_files
+
 # Set ZSH_CUSTOM to the path where your custom config files
 # and plugins exists, or else we will use the default custom/
 if [[ -z "$ZSH_CUSTOM" ]]; then
@@ -45,17 +56,6 @@ for plugin ($plugins); do
     fpath=($ZSH/plugins/$plugin $fpath)
   fi
 done
-
-# Initialize the completion system ignoring insecure directories with a
-# cache time of 20 hours, so it should almost always regenerate the first time a
-# shell is opened each day.
-_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
-if (( $#_comp_files )); then
-  compinit -i -C
-else
-  compinit -i
-fi
-unset _comp_files
 
 # Load all of the plugins that were defined in ~/.zshrc
 for plugin ($plugins); do
