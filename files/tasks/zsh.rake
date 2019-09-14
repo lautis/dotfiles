@@ -1,3 +1,5 @@
+require 'shellwords'
+
 module ZSH
   SPACESHIP_URL = 'https://github.com/denysdovhan/spaceship-prompt.git'.freeze
   EMOJI_CLI_REPO = 'https://github.com/b4b4r07/emoji-cli.git'.freeze
@@ -11,12 +13,12 @@ module ZSH
   extend self
 
   def change_default_shell
-    `chsh -s #{zsh_path}` if ENV['SHELL'] != zsh_path
+    `chsh -s #{Shellwords.escape(zsh_path)}` if ENV['SHELL'] != zsh_path
   end
 
   def setup_oh_my_zsh
     if File.directory?(File.join(oh_my_zsh_dir, '.git'))
-      puts 'Oh-My-ZSH already installed'
+      `git -C #{Shellwords.escape(oh_my_zsh_dir)} pull`
     else
       clone_oh_my_zsh
     end
@@ -52,7 +54,7 @@ module ZSH
     return unless File.exist?(zsh_path)
     unless File.read(SHELLS_FILE).include?(zsh_path)
       puts 'Adding ZSH to list of acceptable shells'
-      `echo #{zsh_path} | sudo tee -a #{SHELLS_FILE}`
+      `echo #{Shellwords.esape(zsh_path)} | sudo tee -a #{SHELLS_FILE}`
     end
   end
 
@@ -60,7 +62,7 @@ module ZSH
 
   def clone_or_update(repo_url, directory)
     if File.exist?(directory)
-      `git -C #{directory} pull`
+      `git -C #{Shellwords.escape(directory)} pull`
     else
       `git clone #{repo_url} #{directory}`
     end
@@ -99,15 +101,15 @@ module ZSH
   end
 
   def symlink_spaceship_theme
-    `ln -sf spaceship-prompt/spaceship.zsh #{themes_dir}/spaceship.zsh-theme`
+    theme_path = File.join(themes_dir, "spaceship.zsh-theme")
+    `ln -sf spaceship-prompt/spaceship.zsh #{Shellwords.escape(theme_path)}`
   end
 
   def clone_oh_my_zsh
-    `git clone --bare #{OH_MY_ZSH_REPO} #{File.join(oh_my_zsh_dir, '.git')}`
-    Dir.chdir(oh_my_zsh_dir) do
-      `git config core.bare false`
-      `git checkout master`
-    end
+    zsh_git_path = File.join(oh_my_zsh_dir, '.git')
+    `git clone --bare #{Shellwords.escape(OH_MY_ZSH_REPO)} #{Shellwords.escape(zsh_git_path)}`
+    `git -C #{oh_my_zsh_dir} config core.bare false`
+    `git -C #{oh_my_zsh_dir} checkout master`
   end
 end
 
