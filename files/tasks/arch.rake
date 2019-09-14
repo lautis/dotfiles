@@ -6,6 +6,6 @@ namespace :arch do
     next if File.read("/etc/locale.gen").match(/^#{locale}/)
 
     `echo '#{locale}' | sudo tee -a /etc/locale.gen`
-    `sudo locale-gen
+    `sudo locale-gen`
   end
 end
