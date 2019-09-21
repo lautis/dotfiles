@@ -6,11 +6,11 @@ fzf-down() {
   fzf --height 50% "$@" --border
 }
 
-unalias gf 2>/dev/null
-unalias gb 2>/dev/null
-unalias gt 2>/dev/null
-unalias gh 2>/dev/null
-unalias gr 2>/dev/null
+(( ${+aliases[gf]} )) && unalias gf
+(( ${+aliases[gb]} )) && unalias gb
+(( ${+aliases[gt]} )) && unalias gt
+(( ${+aliases[gh]} )) && unalias gh
+(( ${+aliases[gr]} )) && unalias gr
 
 gf() {
   is_in_git_repo || return
