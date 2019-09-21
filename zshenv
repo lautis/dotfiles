@@ -5,6 +5,7 @@ export PATH=$HOME/.cargo/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 export EDITOR='code --wait'
 export PAGER='less'
+export LESS='-R'
 export ARCHFLAGS='-arch x86_64'
 
 export FZF_DEFAULT_OPTS="--height 50% --reverse --border --inline-info --preview-window 'right:60%' --preview '(bat --color=always --style=numbers {} || cat {} || tree -C {}) 2> /dev/null | head -500'"

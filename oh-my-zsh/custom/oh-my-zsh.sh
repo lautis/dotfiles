@@ -32,11 +32,11 @@ fi
 # Load all of the config files in ~/oh-my-zsh that end in .zsh
 # TIP: Add files you don't want in git to .gitignore
 source $ZSH/lib/completion.zsh
-source $ZSH/lib/directories.zsh
+#source $ZSH/lib/directories.zsh
 source $ZSH/lib/functions.zsh
 source $ZSH/lib/history.zsh
 source $ZSH/lib/key-bindings.zsh
-source $ZSH/lib/spectrum.zsh
+#source $ZSH/lib/spectrum.zsh
 source $ZSH/lib/termsupport.zsh
 source $ZSH_CUSTOM/lib/theme-and-appearance.zsh
 source $ZSH_CUSTOM/lib/misc.zsh
