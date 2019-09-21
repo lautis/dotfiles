@@ -83,6 +83,7 @@ plugins=(
 cdpath=(.. ~ ~/Documents)
 
 # Aliases
+alias _=sudo
 alias j=z
 alias irssi="mosh irssi -- screen -rdU irssi"
 alias vmp="git reset --hard; git clean -f"
@@ -140,11 +141,6 @@ expand-or-complete-with-redisplay() {
 }
 zle -N expand-or-complete-with-redisplay
 bindkey "^I" expand-or-complete-with-redisplay
-
-
-if [ -f /usr/local/share/zsh/site-functions/_tmuxinator ]; then
-  source /usr/local/share/zsh/site-functions/_tmuxinator
-fi
 
 # Cache initialisation scripts for *env
 function _load-toolchain-env() {
