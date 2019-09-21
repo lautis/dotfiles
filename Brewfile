@@ -36,6 +36,8 @@ mas 'PiPifier', id: 1160374471
 brew 'bat'
 brew 'cargo-completion'
 brew 'docker-clean'
+brew 'docker-completion'
+brew 'docker-compose-completion'
 brew 'emojify'
 brew 'exa'
 brew 'dive'
