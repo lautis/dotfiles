@@ -83,6 +83,7 @@ brew 'tmux'
 brew 'tmuxinator-completion'
 brew 'zsh'
 brew 'zsh-autosuggestions'
+brew 'zsh-completions'
 brew 'yarn', args: ['without-node']
 
 cask 'charles'
