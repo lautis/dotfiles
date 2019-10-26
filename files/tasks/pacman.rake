@@ -9,7 +9,7 @@ namespace :pacman do
     `sudo pacman --needed --noconfirm -S base-devel curl`
     Dir.chdir('/tmp') do
       `curl #{YAY_URL} | tar -xzv`
-      Dir.chdir('/tmp/yay') { `makepkg -s && sudo pacman --noconfirm -U *xz` }
+      Dir.chdir('/tmp/yay-bin') { `PKGEXT='.pkg.tar' makepkg -s && sudo pacman --noconfirm -U *.pkg.tar` }
     end
   end
 
