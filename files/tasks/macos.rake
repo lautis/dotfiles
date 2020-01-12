@@ -3,9 +3,14 @@ def osascript(script)
 end
 
 desc 'MacOS specific configuration'
-task macos: ['macos:defaults', 'macos:terminal']
+task macos: ['macos:defaults', 'macos:terminal', 'macos:nano_symlink']
 
 namespace :macos do
+  task :nano_symlink do
+    `mkdir -p ~/.config/nano`
+    `ln -sf /usr/local/share/nano ~/.config/nano/share`
+  end
+
   desc 'Setup xcode terminal tooling'
   task :xcode do
     `xcode-select --install`
