@@ -3,7 +3,12 @@ export LC_ALL=en_GB.UTF-8
 export LANG=en_GB.UTF-8
 export PATH=$HOME/.cargo/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
-export EDITOR='code --wait'
+if (( $+commands[code] )); then
+  export EDITOR='code --wait'
+else
+  export EDITOR='nano'
+fi
+
 export PAGER='less'
 export LESS='-R'
 export ARCHFLAGS='-arch x86_64'
