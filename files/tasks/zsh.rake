@@ -3,9 +3,9 @@ require 'shellwords'
 module ZSH
   SPACESHIP_URL = 'https://github.com/denysdovhan/spaceship-prompt.git'.freeze
   EMOJI_CLI_REPO = 'https://github.com/b4b4r07/emoji-cli.git'.freeze
-  FAST_AUTOCOMPLETE_REPO = 'git@github.com:zdharma/fast-syntax-highlighting.git'
+  FAST_AUTOCOMPLETE_REPO = 'https://github.com/zdharma/fast-syntax-highlighting.git'
                            .freeze
-  OH_MY_ZSH_REPO = 'git@github.com:robbyrussell/oh-my-zsh.git'
+  OH_MY_ZSH_REPO = 'https://github.com/ohmyzsh/ohmyzsh.git'
                    .freeze
   FZF_REPO = 'https://github.com/junegunn/fzf.git'.freeze
   SHELLS_FILE = '/etc/shells'.freeze
@@ -52,19 +52,20 @@ module ZSH
 
   def add_shell
     return unless File.exist?(zsh_path)
-    unless File.read(SHELLS_FILE).include?(zsh_path)
-      puts 'Adding ZSH to list of acceptable shells'
-      `echo #{Shellwords.esape(zsh_path)} | sudo tee -a #{SHELLS_FILE}`
-    end
+    return if File.read(SHELLS_FILE).include?(zsh_path)
+
+    puts 'Adding ZSH to list of acceptable shells'
+    `echo #{Shellwords.esape(zsh_path)} | sudo tee -a #{SHELLS_FILE}`
   end
 
   private
 
   def clone_or_update(repo_url, directory)
     if File.exist?(directory)
+      `git -C #{Shellwords.escape(directory)} remote set-url origin #{Shellwords.escape(repo_url)}`
       `git -C #{Shellwords.escape(directory)} pull`
     else
-      `git clone #{repo_url} #{directory}`
+      `git clone #{Shellwords.escape(repo_url)} #{Shellwords.escape(directory)}`
     end
   end
 
