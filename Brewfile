@@ -16,7 +16,6 @@ mas 'Xcode', id: 497799835
 mas 'Airmail 3', id: 918858936
 mas 'iA Writer', id: 775737590
 mas 'Pixelmator', id: 407963104
-mas 'Twitter', id: 409789998
 mas 'Pages', id: 409201541
 mas 'Numbers', id: 409203825
 mas 'Keynote', id: 409183694
