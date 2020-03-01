@@ -84,7 +84,7 @@ brew 'tmuxinator-completion'
 brew 'zsh'
 brew 'zsh-autosuggestions'
 brew 'zsh-completions'
-brew 'yarn', args: ['without-node']
+brew 'yarn'
 
 cask 'charles'
 cask 'docker'
