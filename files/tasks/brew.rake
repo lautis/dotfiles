@@ -7,9 +7,9 @@ namespace :brew do
   desc 'Install homebrew'
   task :install do
     if command?('brew')
-      `/usr/bin/ruby -e "$(curl -fsSL #{HOMEBREW_URL})" </dev/null`
-    else
       `brew update`
+    else
+      `/usr/bin/ruby -e "$(curl -fsSL #{HOMEBREW_URL})" </dev/null`
     end
   end
 
