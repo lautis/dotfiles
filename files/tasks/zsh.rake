@@ -55,7 +55,7 @@ module ZSH
     return if File.read(SHELLS_FILE).include?(zsh_path)
 
     puts 'Adding ZSH to list of acceptable shells'
-    `echo #{Shellwords.esape(zsh_path)} | sudo tee -a #{SHELLS_FILE}`
+    `echo #{Shellwords.escape(zsh_path)} | sudo tee -a #{SHELLS_FILE}`
   end
 
   private
