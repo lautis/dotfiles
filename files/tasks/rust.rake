@@ -11,27 +11,27 @@ namespace :rust do
     if !command?('rustup') && command?('rustup-init')
       `rustup-init -y --no-modify-path`
     elsif !command?('rustup')
-      `curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path`
+      `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
     else
       `rustup update`
     end
   end
 
   task :install do
-    `rustup install stable`
-    `rustup install nightly`
-    `rustup default stable`
+    `$HOME/.cargo/bin/rustup install stable`
+    `$HOME/.cargo/bin/rustup install nightly`
+    `$HOME/.cargo/bin/rustup default stable`
   end
 
   task :rustfmt do
-    `rustup component add rustfmt --toolchain nightly` unless RUBY_PLATFORM.include?("armv")
+    `$HOME/.cargo/bin/rustup component add rustfmt --toolchain nightly` unless RUBY_PLATFORM.include?("armv")
   end
 
   task :clippy do
-    `cargo +nightly install clippy`  unless RUBY_PLATFORM.include?("armv")
+    `$HOME/.cargo/bin/cargo +nightly install clippy`  unless RUBY_PLATFORM.include?("armv")
   end
 
   task :download_sources do
-    `rustup component add rust-src`
+    `$HOME/.cargo/bin/rustup component add rust-src`
   end
 end
