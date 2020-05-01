@@ -65,3 +65,16 @@ defaults write com.panic.Transmit ShowTransmitMenu 1
 
 local_defaults="$(dirname $BASH_SOURCE[0])/defaults.local"
 test -x $local_defaults && $local_defaults
+
+# Show battery status in menu
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+# Configure menu bar items
+defaults write com.apple.systemuiserver menuExtras -array \
+  "/System/Library/CoreServices/Menu Extras/Clock.menu" \
+  "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+  "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+  "/System/Library/CoreServices/Menu Extras/Volume.menu" \
+  "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+  "/System/Library/CoreServices/Menu Extras/Displays.menu"
