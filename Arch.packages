@@ -11,6 +11,7 @@ fasd
 fd
 gifski
 git
+git-delta-bin
 jq
 llvm
 mosh

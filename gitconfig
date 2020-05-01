@@ -12,6 +12,7 @@
 	whitespace = trailing-space,space-before-tab
 	autocrlf = input
 	safecrlf = true
+	pager = "delta --plus-color=\"#012800\" --minus-color=\"#340001\""
 [push]
 	default = upstream
 [merge]
@@ -53,3 +54,5 @@
 	insteadOf = "https://github.com/"
 [url "git@github.com:"]
 	insteadOf = "git://github.com/"
+[interactive]
+	diffFilter = delta --color-only
