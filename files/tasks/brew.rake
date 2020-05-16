@@ -25,6 +25,6 @@ namespace :brew do
 
   desc 'Install must have packages'
   task :bundle do
-    `brew bundle`
+    `brew bundle --no-bundle`
   end
 end
