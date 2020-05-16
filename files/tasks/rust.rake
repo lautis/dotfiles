@@ -24,11 +24,15 @@ namespace :rust do
   end
 
   task :rustfmt do
-    `$HOME/.cargo/bin/rustup component add rustfmt --toolchain nightly` unless RUBY_PLATFORM.include?("armv")
+    unless RUBY_PLATFORM.include?('armv')
+      `$HOME/.cargo/bin/rustup component add rustfmt --toolchain nightly`
+    end
   end
 
   task :clippy do
-    `$HOME/.cargo/bin/cargo +nightly install clippy`  unless RUBY_PLATFORM.include?("armv")
+    unless RUBY_PLATFORM.include?('armv')
+      `$HOME/.cargo/bin/cargo +nightly install clippy`
+    end
   end
 
   task :download_sources do

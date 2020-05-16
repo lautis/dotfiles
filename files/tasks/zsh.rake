@@ -108,7 +108,7 @@ module ZSH
   end
 
   def symlink_spaceship_theme
-    theme_path = File.join(themes_dir, "spaceship.zsh-theme")
+    theme_path = File.join(themes_dir, 'spaceship.zsh-theme')
     `ln -sf spaceship-prompt/spaceship.zsh #{Shellwords.escape(theme_path)}`
   end
 

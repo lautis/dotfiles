@@ -44,5 +44,5 @@ namespace :vscode do
   end
 end
 
-desc "Setup VSCode settings sync"
-task vscode: ["vscode:install_sync_extension", "vscode:copy_sync_settings"]
+desc 'Setup VSCode settings sync'
+task vscode: ['vscode:install_sync_extension', 'vscode:copy_sync_settings']

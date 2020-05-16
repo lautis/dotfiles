@@ -1,0 +1,8 @@
+AllCops:
+  TargetRubyVersion: 2.4
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

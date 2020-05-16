@@ -6,6 +6,7 @@ YAY_URL = 'https://aur.archlinux.org/cgit/aur.git/snapshot/yay-bin.tar.gz'.freez
 namespace :pacman do
   task :yay do
     next if command?('yay')
+
     `sudo pacman --needed --noconfirm -S base-devel curl`
     Dir.chdir('/tmp') do
       `curl #{YAY_URL} | tar -xzv`
@@ -13,9 +14,9 @@ namespace :pacman do
     end
   end
 
-  desc "Install packages"
+  desc 'Install packages'
   task :bundle do
-    packages = File.read('Arch.packages').split("\n").join(" ")
+    packages = File.read('Arch.packages').split("\n").join(' ')
     puts `yay --needed --noconfirm -S #{packages}`
   end
 end
