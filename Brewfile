@@ -131,5 +131,3 @@ cask 'visual-studio-code'
 cask 'vlc'
 cask 'vlc-webplugin'
 cask 'webpquicklook'
-
-cask 'java'
