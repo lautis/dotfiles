@@ -2,9 +2,9 @@ avahi
 base-devel
 bat
 curl
+dnsutils
 docker
 docker-compose
-dnsutils
 emojify
 exa
 fasd
@@ -32,7 +32,7 @@ sudo
 the_silver_searcher
 tldr
 tmux
+yay-bin
 zsh
 zsh-autosuggestions
 zsh-completions
-yay-bin
