@@ -77,7 +77,7 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(
   bundler git fasd colored-man-pages docker docker-compose rake rake-fast extract
-  fast-syntax-highlighting emoji-cli fzf-git fzf-fasd sshuttle
+  fast-syntax-highlighting emoji-cli fzf-git forgit fzf-fasd sshuttle
 )
 
 cdpath=(.. ~ ~/Documents)

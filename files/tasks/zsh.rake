@@ -8,6 +8,7 @@ module ZSH
   OH_MY_ZSH_REPO = 'https://github.com/ohmyzsh/ohmyzsh.git'
                    .freeze
   FZF_REPO = 'https://github.com/junegunn/fzf.git'.freeze
+  FORGIT_REPO = 'https://github.com/wfxr/forgit.git'.freeze
   SHELLS_FILE = '/etc/shells'.freeze
 
   extend self
@@ -43,6 +44,11 @@ module ZSH
       clone_or_update(FZF_REPO, File.join(ENV['HOME'], '.fzf'))
       `~/.fzf/install #{fzf_options}`
     end
+  end
+
+  def setup_forgit
+    plugin_path = File.join(plugins_dir, 'forgit')
+    clone_or_update(FORGIT_REPO, plugin_path)
   end
 
   def setup_fast_syntax_highlighting
@@ -122,6 +128,7 @@ task zsh: [
   'zsh:set_default',
   'zsh:fast_syntax_highlighting',
   'zsh:fzf',
+  'zsh:forgit',
   'zsh:emoji_cli'
 ]
 
@@ -142,6 +149,9 @@ namespace :zsh do
 
   desc 'Install fzf'
   task(:fzf) { ZSH.setup_fzf }
+
+  desc 'Install forgit'
+  task(:forgit) { ZSH.setup_forgit }
 
   desc 'Change default shell to ZSH'
   task(:set_default) { ZSH.change_default_shell }
