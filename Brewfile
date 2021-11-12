@@ -24,7 +24,6 @@ mas 'Telegram', id: 747648890
 mas 'The Unarchiver', id: 425424353
 mas 'DaisyDisk', id: 411643860
 mas 'Amphetamine', id: 937984704
-mas 'Parcel', id: 639968404
 mas '1Blocker', id: 1365531024
 mas 'Giphy Capture', id: 668208984
 mas 'Agenda', id: 1287445660
