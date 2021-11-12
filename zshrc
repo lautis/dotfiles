@@ -89,7 +89,6 @@ alias _=sudo
 alias j=z
 alias irssi="mosh irssi -- screen -rdU irssi"
 alias vmp="git reset --hard; git clean -f"
-alias c="highlight --out-format=xterm256 --style=Candy"
 alias chrome="/Applications/Google\\ \\Chrome.app/Contents/MacOS/Google\\ \\Chrome"
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 
