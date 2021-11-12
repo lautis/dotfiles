@@ -1,3 +1,4 @@
+angle-grinder
 avahi
 base-devel
 bat
@@ -11,7 +12,7 @@ fasd
 fd
 gifski
 git
-git-delta-bin
+git-delta
 github-cli
 jq
 llvm

@@ -25,19 +25,17 @@ mas 'The Unarchiver', id: 425424353
 mas 'DaisyDisk', id: 411643860
 mas 'Amphetamine', id: 937984704
 mas 'Parcel', id: 639968404
-mas 'AreenaX', id: 1018799028
-mas '1Blocker', id: 1107421413
+mas '1Blocker', id: 1365531024
 mas 'Giphy Capture', id: 668208984
 mas 'Agenda', id: 1287445660
 mas 'Smart Guide', id: 1394121296
 mas 'TweetBot 3', id: 1384080005
 mas 'PiPifier', id: 1160374471
+mas 'Refined Github', id: 1519867270
 
+brew 'angle-grinder'
 brew 'bat'
-brew 'cargo-completion'
 brew 'docker-clean'
-brew 'docker-completion'
-brew 'docker-compose-completion'
 brew 'emojify'
 brew 'exa'
 brew 'dive'
@@ -93,24 +91,17 @@ cask 'docker'
 cask 'dropshare'
 cask 'firefox'
 cask 'fork'
-cask 'font-dejavu-sans'
 cask 'font-fira-code'
 cask 'font-hasklig'
 cask 'font-menlo-for-powerline'
 cask 'font-microsoft-office'
 cask 'font-office-code-pro'
 cask 'font-offlig'
-cask 'font-roboto'
-cask 'font-source-code-pro'
-cask 'font-source-sans-pro'
-cask 'font-source-serif-pro'
 cask 'google-chrome'
 cask 'gpg-suite'
 cask 'hex-fiend'
-cask 'hyperdock'
 cask 'insomnia'
 cask 'numi'
-cask 'osxfuse'
 cask 'qlcolorcode'
 cask 'qlmarkdown'
 cask 'qlprettypatch'
@@ -119,14 +110,10 @@ cask 'qlvideo'
 cask 'quicklook-csv'
 cask 'quicklook-json'
 cask 'paintbrush'
-cask 'refined-github-safari'
-cask 'safari-technology-preview'
-cask 'sketch'
+cask 'rectangle'
 cask 'spotify'
 cask 'transmission'
 cask 'transmit'
-cask 'transmit-disk'
 cask 'visual-studio-code'
 cask 'vlc'
-cask 'vlc-webplugin'
 cask 'webpquicklook'
