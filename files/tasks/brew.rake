@@ -1,4 +1,4 @@
-HOMEBREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/master/install'.freeze
+HOMEBREW_URL = 'https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh'.freeze
 
 desc 'Setup Brew'
 task brew: ['brew:install', 'brew:mas', 'brew:upgrade', 'brew:bundle']
@@ -9,7 +9,7 @@ namespace :brew do
     if command?('brew')
       `brew update`
     else
-      `/usr/bin/ruby -e "$(curl -fsSL #{HOMEBREW_URL})" </dev/null`
+      `/bin/bash -c "$(curl -fsSL #{HOMEBREW_URL})" </dev/null`
     end
   end
 
@@ -25,6 +25,6 @@ namespace :brew do
 
   desc 'Install must have packages'
   task :bundle do
-    `brew bundle --no-bundle`
+    `brew bundle --no-lock`
   end
 end

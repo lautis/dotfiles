@@ -8,7 +8,7 @@ task macos: ['macos:defaults', 'macos:terminal', 'macos:nano_symlink']
 namespace :macos do
   task :nano_symlink do
     `mkdir -p ~/.config/nano`
-    `ln -sf /usr/local/share/nano ~/.config/nano/share`
+    `ln -sf $(brew --prefix)/share/nano ~/.config/nano/share`
   end
 
   desc 'Setup xcode terminal tooling'

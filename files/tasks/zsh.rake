@@ -77,7 +77,7 @@ module ZSH
 
   def zsh_path
     if RUBY_PLATFORM.include?('darwin')
-      '/usr/local/bin/zsh'
+      `echo $(brew --prefix)/bin/zsh`.chomp
     else
       '/usr/bin/zsh'
     end.freeze
@@ -126,7 +126,6 @@ task zsh: [
   'zsh:oh_my_zsh',
   'zsh:spaceship',
   'zsh:set_default',
-  'zsh:fast_syntax_highlighting',
   'zsh:fzf',
   'zsh:forgit',
   'zsh:emoji_cli'

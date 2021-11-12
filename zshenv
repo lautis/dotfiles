@@ -1,6 +1,11 @@
 # Define environment variables.
 export LC_ALL=en_GB.UTF-8
 export LANG=en_GB.UTF-8
+
+if [[ -d /opt/homebrew ]]; then
+  export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
+fi
+
 export PATH=$HOME/.cargo/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 if (( $+commands[code] )); then
