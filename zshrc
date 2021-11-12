@@ -89,7 +89,11 @@ alias _=sudo
 alias j=z
 alias irssi="mosh irssi -- screen -rdU irssi"
 alias vmp="git reset --hard; git clean -f"
-alias chrome="/Applications/Google\\ \\Chrome.app/Contents/MacOS/Google\\ \\Chrome"
+
+if [[ -d "/Applications/Google Chrome.app" ]]; then
+  alias chrome="/Applications/Google\\ \\Chrome.app/Contents/MacOS/Google\\ \\Chrome"
+fi
+
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 
 if command -v hub > /dev/null; then alias git=hub; fi
