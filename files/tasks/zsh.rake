@@ -1,7 +1,6 @@
 require 'shellwords'
 
 module ZSH
-  SPACESHIP_URL = 'https://github.com/denysdovhan/spaceship-prompt.git'.freeze
   EMOJI_CLI_REPO = 'https://github.com/b4b4r07/emoji-cli.git'.freeze
   FAST_AUTOCOMPLETE_REPO = 'https://github.com/zdharma/fast-syntax-highlighting.git'
                            .freeze
@@ -23,12 +22,6 @@ module ZSH
     else
       clone_oh_my_zsh
     end
-  end
-
-  def setup_spaceship
-    FileUtils::Verbose.mkdir_p(themes_dir) unless File.exist?(themes_dir)
-    clone_or_update_spaceship
-    symlink_spaceship_theme
   end
 
   def setup_emoji_cli
@@ -95,21 +88,8 @@ module ZSH
     File.join(oh_my_zsh_dir, 'custom', 'themes')
   end
 
-  def spaceship_dir
-    File.join(themes_dir, 'spaceship-prompt')
-  end
-
   def emoji_cli_dir
     File.join(plugins_dir, 'emoji-cli')
-  end
-
-  def clone_or_update_spaceship
-    clone_or_update(SPACESHIP_URL, spaceship_dir)
-  end
-
-  def symlink_spaceship_theme
-    theme_path = File.join(themes_dir, 'spaceship.zsh-theme')
-    `ln -sf spaceship-prompt/spaceship.zsh #{Shellwords.escape(theme_path)}`
   end
 
   def clone_oh_my_zsh
@@ -124,7 +104,6 @@ desc 'Configure ZSH'
 task zsh: [
   'zsh:shell',
   'zsh:oh_my_zsh',
-  'zsh:spaceship',
   'zsh:set_default',
   'zsh:fzf',
   'zsh:forgit',
@@ -134,9 +113,6 @@ task zsh: [
 namespace :zsh do
   desc 'Add Homebrew ZSH to list of acceptable shells'
   task(:shell) { ZSH.add_shell }
-
-  desc 'Install ZSH Spaceship theme'
-  task(:spaceship) { ZSH.setup_spaceship }
 
   desc 'Install Oh My ZSH'
   task(:oh_my_zsh) { ZSH.setup_oh_my_zsh }

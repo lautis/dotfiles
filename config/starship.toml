@@ -1,0 +1,10 @@
+right_format = """$cmd_duration$status"""
+add_newline = true
+
+[status]
+disabled = false
+format = "[$status$symbol]($style) "
+
+
+[nodejs]
+disabled = true

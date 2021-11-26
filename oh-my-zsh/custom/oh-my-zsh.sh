@@ -68,4 +68,4 @@ done
 unset plugin
 
 # Load the theme
-source "$ZSH_CUSTOM/themes/$ZSH_THEME.zsh-theme"
+#source "$ZSH_CUSTOM/themes/$ZSH_THEME.zsh-theme"
