@@ -117,7 +117,12 @@ function _load-plugin() {
 
 _load-plugin zsh-autosuggestions/zsh-autosuggestions.zsh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f ~/.fzf.zsh ]; then
+  source ~/.fzf.zsh
+elif [ -d  /usr/share/fzf ]; then
+  [[ $- == *i* ]] && source /usr/share/fzf/completion.zsh
+  source /usr/share/fzf/key-bindings.zsh
+fi
 
 # Use fd instead of the default find
 if (( ${+commands[fd]} )); then

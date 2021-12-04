@@ -33,9 +33,6 @@ module ZSH
     if command?('brew')
       `brew reinstall fzf`
       `$(brew --prefix)/opt/fzf/install #{fzf_options}`
-    else
-      clone_or_update(FZF_REPO, File.join(ENV['HOME'], '.fzf'))
-      `~/.fzf/install #{fzf_options}`
     end
   end
 
