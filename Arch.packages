@@ -31,6 +31,7 @@ ruby-build
 rustup
 sshuttle
 sudo
+starship
 the_silver_searcher
 tldr
 tmux
