@@ -103,9 +103,19 @@ function _load-toolchain-env() {
 _load-toolchain-env rbenv
 _load-toolchain-env nodenv
 
-[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+function _load-plugin() {
+  if [ -f "/usr/share/zsh/plugins/$1" ]; then
+    source "/usr/share/zsh/plugins/$1"
+  elif [ -f "/usr/local/share/$1" ]; then
+    source "/usr/local/share/$1"
+  elif [ -f "/opt/homebrew/share/$1" ]; then
+    source "/opt/homebrew/share/$1"
+  else
+    echo "could not find $1"
+  fi
+}
+
+_load-plugin zsh-autosuggestions/zsh-autosuggestions.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
