@@ -8,3 +8,12 @@ format = "[$status$symbol]($style) "
 
 [nodejs]
 disabled = true
+
+[ruby]
+disabled = true
+
+[php]
+disabled = true
+
+[python]
+disabled = true
