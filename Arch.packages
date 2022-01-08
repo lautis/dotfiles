@@ -15,6 +15,7 @@ gifski
 git
 git-delta
 github-cli
+hexyl
 jq
 llvm
 mosh
