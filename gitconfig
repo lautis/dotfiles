@@ -56,6 +56,8 @@
 	insteadOf = "git://github.com/"
 [interactive]
 	diffFilter = delta --color-only
+[credential]
+	username = lautis
 [delta]
 	plus-style = "syntax #012800"
 	minus-style = "normal #340001"
