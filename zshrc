@@ -17,7 +17,7 @@ ZSH_DISABLE_COMPFIX=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(
-  bundler git fasd colored-man-pages rake rake-fast extract
+  bundler git zoxide colored-man-pages rake rake-fast extract
   fast-syntax-highlighting emoji-cli fzf-git forgit fzf-fasd sshuttle
 )
 

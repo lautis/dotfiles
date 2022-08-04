@@ -8,7 +8,6 @@ docker
 docker-compose
 emojify
 exa
-fasd
 fd
 fzf
 fx
@@ -37,6 +36,7 @@ the_silver_searcher
 tldr
 tmux
 yay-bin
+zoxide
 zsh
 zsh-autosuggestions
 zsh-completions
