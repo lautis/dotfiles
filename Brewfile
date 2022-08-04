@@ -83,7 +83,6 @@ brew 'tmux'
 brew 'tmuxinator'
 brew 'zoxide'
 brew 'zsh'
-brew 'zsh-autosuggestions'
 brew 'zsh-completions'
 brew 'yarn'
 

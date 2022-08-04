@@ -1,13 +1,8 @@
 require 'shellwords'
 
 module ZSH
-  EMOJI_CLI_REPO = 'https://github.com/b4b4r07/emoji-cli.git'.freeze
-  FAST_AUTOCOMPLETE_REPO = 'https://github.com/zdharma/fast-syntax-highlighting.git'
-                           .freeze
   OH_MY_ZSH_REPO = 'https://github.com/ohmyzsh/ohmyzsh.git'
                    .freeze
-  FZF_REPO = 'https://github.com/junegunn/fzf.git'.freeze
-  FORGIT_REPO = 'https://github.com/wfxr/forgit.git'.freeze
   SHELLS_FILE = '/etc/shells'.freeze
 
   extend self
@@ -24,26 +19,12 @@ module ZSH
     end
   end
 
-  def setup_emoji_cli
-    clone_or_update(EMOJI_CLI_REPO, emoji_cli_dir)
-  end
-
   def setup_fzf
     fzf_options = '--key-bindings --completion --no-update-rc --no-bash'
     if command?('brew')
       `brew reinstall fzf`
       `$(brew --prefix)/opt/fzf/install #{fzf_options}`
     end
-  end
-
-  def setup_forgit
-    plugin_path = File.join(plugins_dir, 'forgit')
-    clone_or_update(FORGIT_REPO, plugin_path)
-  end
-
-  def setup_fast_syntax_highlighting
-    plugin_path = File.join(plugins_dir, 'fast-syntax-highlighting')
-    clone_or_update(FAST_AUTOCOMPLETE_REPO, plugin_path)
   end
 
   def add_shell
@@ -85,10 +66,6 @@ module ZSH
     File.join(oh_my_zsh_dir, 'custom', 'themes')
   end
 
-  def emoji_cli_dir
-    File.join(plugins_dir, 'emoji-cli')
-  end
-
   def clone_oh_my_zsh
     zsh_git_path = File.join(oh_my_zsh_dir, '.git')
     `git clone --bare #{Shellwords.escape(OH_MY_ZSH_REPO)} #{Shellwords.escape(zsh_git_path)}`
@@ -103,7 +80,6 @@ task zsh: [
   'zsh:oh_my_zsh',
   'zsh:set_default',
   'zsh:fzf',
-  'zsh:forgit',
   'zsh:emoji_cli'
 ]
 
@@ -113,11 +89,6 @@ namespace :zsh do
 
   desc 'Install Oh My ZSH'
   task(:oh_my_zsh) { ZSH.setup_oh_my_zsh }
-
-  task(:fast_syntax_highlighting) { ZSH.setup_fast_syntax_highlighting }
-
-  desc 'Install emoji-cli'
-  task(:emoji_cli) { ZSH.setup_emoji_cli }
 
   desc 'Install fzf'
   task(:fzf) { ZSH.setup_fzf }

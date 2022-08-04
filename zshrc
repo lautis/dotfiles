@@ -1,3 +1,9 @@
+[[ -f ~/.local/share/zsh-snap/git/zsh-snap/znap.zsh ]] ||
+  git clone --depth 1 -- \
+    https://github.com/marlonrichert/zsh-snap.git ~/.local/share/zsh-snap/git/zsh-snap
+
+source ~/.local/share/zsh-snap/git/zsh-snap/znap.zsh
+
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -17,8 +23,7 @@ ZSH_DISABLE_COMPFIX=true
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 plugins=(
-  bundler git zoxide colored-man-pages rake rake-fast extract
-  fast-syntax-highlighting emoji-cli fzf-git forgit fzf-fasd sshuttle
+  bundler git colored-man-pages rake rake-fast fzf-git sshuttle
 )
 
 cdpath=(.. ~ ~/Documents)
@@ -37,12 +42,14 @@ fi
 
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 
-if command -v hub > /dev/null; then alias git=hub; fi
+if (( ${+commands[hub]} )); then alias git=hub; fi
+
+znap source romkatv/zsh-defer
 
 if [ -f $ZSH/custom/oh-my-zsh.sh ]; then
-  source $ZSH/custom/oh-my-zsh.sh
+  zsh-defer source $ZSH/custom/oh-my-zsh.sh
 else
-  source $ZSH/oh-my-zsh.sh
+  zsh-defer source $ZSH/oh-my-zsh.sh
 fi
 
 # Remove conflicting alias
@@ -88,40 +95,20 @@ expand-or-complete-with-redisplay() {
 zle -N expand-or-complete-with-redisplay
 bindkey "^I" expand-or-complete-with-redisplay
 
-# Cache initialisation scripts for *env
-function _load-toolchain-env() {
-  if command -v $1 > /dev/null; then
-    toolchain_cache="$ZSH_CACHE_DIR/$1-init-cache"
-    if [ "$(command -v $1)" -nt "$toolchain_cache" -o ! -s "$toolchain_cache" ]; then
-      $1 init - --no-rehash >| "$toolchain_cache"
-    fi
-    source "$toolchain_cache"
-    unset toolchain_cache
-  fi
-}
+zsh-defer znap source zsh-users/zsh-autosuggestions
+zsh-defer znap source zsh-users/zsh-syntax-highlighting
+zsh-defer znap source wfxr/emoji-cli
+zsh-defer znap source wfxr/forgit
 
-_load-toolchain-env rbenv
-_load-toolchain-env nodenv
-
-function _load-plugin() {
-  if [ -f "/usr/share/zsh/plugins/$1" ]; then
-    source "/usr/share/zsh/plugins/$1"
-  elif [ -f "/usr/local/share/$1" ]; then
-    source "/usr/local/share/$1"
-  elif [ -f "/opt/homebrew/share/$1" ]; then
-    source "/opt/homebrew/share/$1"
-  else
-    echo "could not find $1"
-  fi
-}
-
-_load-plugin zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer znap eval rbenv rbenv init - --no-rehash
+zsh-defer znap eval nodenv nodenv init - --no-rehash
+zsh-defer znap eval zoxide zoxide init zsh
 
 if [ -f ~/.fzf.zsh ]; then
-  source ~/.fzf.zsh
-elif [ -d  /usr/share/fzf ]; then
-  [[ $- == *i* ]] && source /usr/share/fzf/completion.zsh
-  source /usr/share/fzf/key-bindings.zsh
+  zsh-defer source ~/.fzf.zsh
+elif [ -d /usr/share/fzf ]; then
+  [[ $- == *i* ]] && zsh-defer source /usr/share/fzf/completion.zsh
+  zsh-defer source /usr/share/fzf/key-bindings.zsh
 fi
 
 # Use fd instead of the default find
@@ -137,5 +124,5 @@ if (( ${+commands[fd]} )); then
 fi
 
 if (( ${+commands[starship]} )); then
-  eval "$(starship init zsh)"
+  znap eval starship starship init zsh --print-full-init
 fi
