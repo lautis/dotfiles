@@ -21,7 +21,6 @@ jq
 llvm
 mosh
 ncdu
-nodejs-fx
 nodenv
 nodenv-node-build-git
 nss-mdns
