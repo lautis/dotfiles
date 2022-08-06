@@ -39,13 +39,12 @@ alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 
 if (( ${+commands[hub]} )); then alias git=hub; fi
 
-znap source romkatv/zsh-defer
-
-if [ -f $ZSH/custom/oh-my-zsh.sh ]; then
-  zsh-defer source $ZSH/custom/oh-my-zsh.sh
-else
-  zsh-defer source $ZSH/oh-my-zsh.sh
+if (( ${+commands[starship]} )); then
+  znap eval starship starship init zsh --print-full-init
 fi
+znap prompt
+
+znap source romkatv/zsh-defer
 
 # Remove conflicting alias
 (( ${+aliases[rg]} )) && unalias rg
@@ -90,6 +89,13 @@ expand-or-complete-with-redisplay() {
 zle -N expand-or-complete-with-redisplay
 bindkey "^I" expand-or-complete-with-redisplay
 
+if [ -f ~/.fzf.zsh ]; then
+  zsh-defer source ~/.fzf.zsh
+elif [ -d /usr/share/fzf ]; then
+  [[ $- == *i* ]] && zsh-defer source /usr/share/fzf/completion.zsh
+  zsh-defer source /usr/share/fzf/key-bindings.zsh
+fi
+
 znap source ohmyzsh/ohmyzsh lib/{completion,history,functions,key-bindings,termsupport}
 zsh-defer znap source ohmyzsh/ohmyzsh plugins/{bundler,colored-man-pages,rake,rake-fast}
 
@@ -105,13 +111,6 @@ zsh-defer znap eval rbenv rbenv init - --no-rehash
 zsh-defer znap eval nodenv nodenv init - --no-rehash
 zsh-defer znap eval zoxide zoxide init zsh
 
-if [ -f ~/.fzf.zsh ]; then
-  zsh-defer source ~/.fzf.zsh
-elif [ -d /usr/share/fzf ]; then
-  [[ $- == *i* ]] && zsh-defer source /usr/share/fzf/completion.zsh
-  zsh-defer source /usr/share/fzf/key-bindings.zsh
-fi
-
 # Use fd instead of the default find
 if (( ${+commands[fd]} )); then
   _fzf_compgen_path() {
@@ -122,8 +121,4 @@ if (( ${+commands[fd]} )); then
   _fzf_compgen_dir() {
     fd --type d --hidden --follow --exclude ".git" . "$1"
   }
-fi
-
-if (( ${+commands[starship]} )); then
-  znap eval starship starship init zsh --print-full-init
 fi
