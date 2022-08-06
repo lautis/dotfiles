@@ -1,8 +1,8 @@
-[[ -f ~/.local/share/zsh-snap/git/zsh-snap/znap.zsh ]] ||
+[[ -f ~/.local/share/zsh-snap/plugins/zsh-snap/znap.zsh ]] ||
   git clone --depth 1 -- \
-    https://github.com/marlonrichert/zsh-snap.git ~/.local/share/zsh-snap/git/zsh-snap
+    https://github.com/marlonrichert/zsh-snap.git ~/.local/share/zsh-snap/plugins/zsh-snap
 
-source ~/.local/share/zsh-snap/git/zsh-snap/znap.zsh
+source ~/.local/share/zsh-snap/plugins/zsh-snap/znap.zsh
 
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
@@ -20,11 +20,6 @@ ZSH_DISABLE_COMPFIX=true
 
 # Disable auto-setting terminal title
 # export DISABLE_AUTO_TITLE="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(
-  bundler git colored-man-pages rake rake-fast fzf-git sshuttle
-)
 
 cdpath=(.. ~ ~/Documents)
 
@@ -95,10 +90,16 @@ expand-or-complete-with-redisplay() {
 zle -N expand-or-complete-with-redisplay
 bindkey "^I" expand-or-complete-with-redisplay
 
+znap source ohmyzsh/ohmyzsh lib/{completion,history,functions,key-bindings,termsupport}
+zsh-defer znap source ohmyzsh/ohmyzsh plugins/{bundler,colored-man-pages,rake,rake-fast}
+
 zsh-defer znap source zsh-users/zsh-autosuggestions
 zsh-defer znap source zsh-users/zsh-syntax-highlighting
 zsh-defer znap source wfxr/emoji-cli
 zsh-defer znap source wfxr/forgit
+zsh-defer znap source fzf-git
+zsh-defer znap source colors
+zsh-defer znap source sshuttle
 
 zsh-defer znap eval rbenv rbenv init - --no-rehash
 zsh-defer znap eval nodenv nodenv init - --no-rehash

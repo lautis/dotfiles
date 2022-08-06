@@ -1,11 +1,18 @@
 def symlinked_files
   Dir.glob('**/*').select do |file|
-    if %w[Arch.packages Brewfile Rakefile README.md LICENSE.txt].include? file
+    if %w[Arch.packages Brewfile Rakefile README.md LICENSE.txt plugins].include? file
       next false
     end
     next false if file.start_with?('files', '.')
     next false if File.directory? file
 
+    true
+  end
+end
+
+def zsh_plugins
+  Dir.entries('plugins').select do |file|
+    next false if file.start_with?('.')
     true
   end
 end
@@ -16,6 +23,13 @@ task :symlink do
     source = File.expand_path file
     target = File.join ENV['HOME'], '.' + file
     FileUtils::Verbose.mkdir_p File.dirname(target)
+    FileUtils::Verbose.ln_sf source, target
+  end
+
+  zsh_plugins.each do |plugin|
+    source = File.expand_path plugin, 'plugins'
+    target = File.join ENV['HOME'], '.local', 'share', 'zsh-snap', 'plugins', plugin
+
     FileUtils::Verbose.ln_sf source, target
   end
 end
