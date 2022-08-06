@@ -34,6 +34,6 @@ task :symlink do
     target = File.join base_dir, plugin
 
     FileUtils::Verbose.mkdir_p File.dirname(base_dir) unless File.exist? base_dir
-    FileUtils::Verbose.ln_sf source, target
+    FileUtils::Verbose.ln_sf(source, target) unless File.realpath(target) == source
   end
 end
