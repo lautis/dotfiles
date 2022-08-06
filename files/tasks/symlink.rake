@@ -3,7 +3,9 @@ def symlinked_files
     if %w[Arch.packages Brewfile Rakefile README.md LICENSE.txt plugins].include? file
       next false
     end
-    next false if file.start_with?('files', 'plugins' '.')
+    next false if file.start_with?('files')
+    next false if file.start_with?('plugins')
+    next false if file.start_with?('.')
     next false if File.directory? file
 
     true
