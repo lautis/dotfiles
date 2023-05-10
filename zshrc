@@ -40,7 +40,7 @@ alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 if (( ${+commands[hub]} )); then alias git=hub; fi
 
 if (( ${+commands[starship]} )); then
-  znap eval starship starship init zsh --print-full-init
+  znap eval starship 'starship init zsh --print-full-init'
 fi
 znap prompt
 
@@ -103,13 +103,13 @@ zsh-defer znap source zsh-users/zsh-autosuggestions
 zsh-defer znap source zsh-users/zsh-syntax-highlighting
 zsh-defer znap source wfxr/emoji-cli
 zsh-defer znap source wfxr/forgit
-zsh-defer znap source fzf-git
-zsh-defer znap source colors
-zsh-defer znap source sshuttle
+zsh-defer znap source ~/.local/share/zsh-snap/plugins/fzf-git
+zsh-defer znap source ~/.local/share/zsh-snap/plugins/colors
+zsh-defer znap source ~/.local/share/zsh-snap/plugins/sshuttle
 
-zsh-defer znap eval rbenv rbenv init - --no-rehash
-zsh-defer znap eval nodenv nodenv init - --no-rehash
-zsh-defer znap eval zoxide zoxide init zsh
+zsh-defer znap eval rbenv 'rbenv init - --no-rehash'
+zsh-defer znap eval nodenv 'nodenv init - --no-rehash'
+zsh-defer znap eval zoxide 'zoxide init zsh'
 
 # Use fd instead of the default find
 if (( ${+commands[fd]} )); then
