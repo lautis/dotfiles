@@ -16,7 +16,7 @@ brew 'mas'
 mas 'Xcode', id: 497799835
 mas 'Airmail 3', id: 918858936
 mas 'iA Writer', id: 775737590
-mas 'Pixelmator', id: 407963104
+mas 'Pixelmator Pro ', id: 1289583905
 mas 'Pages', id: 409201541
 mas 'Numbers', id: 409203825
 mas 'Keynote', id: 409183694
@@ -26,11 +26,9 @@ mas 'DaisyDisk', id: 411643860
 mas 'Amphetamine', id: 937984704
 mas '1Blocker', id: 1365531024
 mas 'Giphy Capture', id: 668208984
-mas 'Agenda', id: 1287445660
-mas 'Smart Guide', id: 1394121296
-mas 'TweetBot 3', id: 1384080005
 mas 'PiPifier', id: 1160374471
 mas 'Refined Github', id: 1519867270
+mas 'Peek', id: 1554235898
 
 brew 'angle-grinder'
 brew 'bat'
@@ -74,10 +72,9 @@ brew 'rustup-init'
 brew 'socat'
 brew 'sshuttle'
 brew 'starship'
-brew 'telepresence'
+brew 'tealdeer'
 brew 'terminal-notifier'
 brew 'the_silver_searcher'
-brew 'tldr'
 brew 'tokei'
 brew 'tmux'
 brew 'tmuxinator'
@@ -86,6 +83,7 @@ brew 'zsh'
 brew 'zsh-completions'
 brew 'yarn'
 
+cask 'apparency'
 cask 'charles'
 cask 'docker'
 cask 'dropshare'
@@ -102,10 +100,9 @@ cask 'gpg-suite'
 cask 'hex-fiend'
 cask 'insomnia'
 cask 'numi'
-cask 'qlcolorcode'
-cask 'qlmarkdown'
+cask 'obsidian'
+cask 'qlimagesize'
 cask 'qlprettypatch'
-cask 'qlstephen'
 cask 'qlvideo'
 cask 'quicklook-csv'
 cask 'quicklook-json'
