@@ -58,10 +58,6 @@ module ZSH
     File.join(ENV['HOME'], '.oh-my-zsh')
   end
 
-  def plugins_dir
-    File.join(oh_my_zsh_dir, 'custom', 'plugins')
-  end
-
   def themes_dir
     File.join(oh_my_zsh_dir, 'custom', 'themes')
   end
@@ -79,8 +75,7 @@ task zsh: [
   'zsh:shell',
   'zsh:oh_my_zsh',
   'zsh:set_default',
-  'zsh:fzf',
-  'zsh:emoji_cli'
+  'zsh:fzf'
 ]
 
 namespace :zsh do
