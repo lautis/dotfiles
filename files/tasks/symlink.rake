@@ -29,11 +29,11 @@ task :symlink do
   end
 
   zsh_plugins.each do |plugin|
+    
     source = File.expand_path plugin, 'plugins'
     base_dir = File.join ENV['HOME'], '.local', 'share', 'zsh-snap', 'plugins'
     target = File.join base_dir, plugin
-
     FileUtils::Verbose.mkdir_p File.dirname(base_dir) unless File.exist? base_dir
-    FileUtils::Verbose.ln_sf(source, target) unless File.realpath(target) == source
+    FileUtils::Verbose.ln_sf(source, target) if !File.exist?(target) || File.realpath(target) != source
   end
 end
