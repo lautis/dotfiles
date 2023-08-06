@@ -8,7 +8,6 @@ tap 'homebrew/cask-drivers'
 tap 'homebrew/cask-fonts'
 tap 'nodenv/nodenv'
 tap 'wagoodman/dive'
-tap 'lautis/refined-github-safari'
 tap 'lautis/tap'
 
 brew 'mas'
