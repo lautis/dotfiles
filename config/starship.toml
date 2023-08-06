@@ -20,3 +20,6 @@ disabled = true
 
 [rust]
 disabled = true
+
+[aws]
+disabled = true
